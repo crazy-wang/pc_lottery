@@ -1,0 +1,31 @@
+@import "public";
+.w1000-center {
+  width: 1000px;
+  margin: 0 auto;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearf {
+  zoom: 1;
+}
+.clearf:after {
+  display: block;
+  clear: both;
+  content: '';
+  visibility: hidden;
+  height: 0;
+}
+.fix {
+  zoom: 1;
+}
+.fix:after {
+  display: block;
+  clear: both;
+  content: '';
+  visibility: hidden;
+  height: 0;
+}
