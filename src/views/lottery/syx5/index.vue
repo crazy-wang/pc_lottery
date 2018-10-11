@@ -132,7 +132,7 @@
           </div>
           <div class="checkedList">
             <!--这块准备自写组件，不按他的来-->
-            <bat-item :batPropsData="batItemProps" @clearActiveClass="clearActiveClass"></bat-item>
+            <bat-item :propsData="propsData" @delPropsData="delPropsData"></bat-item>
           </div>
           <div class="Bet">
             <p class="betTotal">
@@ -142,7 +142,7 @@
               <i class="money">{{betMoneyTotal}}</i>
               元
             </p>
-            <a class="betBtn ClickShade">立即投注</a>
+            <a class="betBtn ClickShade">马上投注</a>
           </div>
         </div>
       </div>
@@ -239,6 +239,7 @@
   export default {
     data() {
       return {
+        money: 1930.5,
         qrxhData: {
           num: 0,
           total: 0,
@@ -889,8 +890,9 @@
             num: '547.12'
           },
         ],
-        batItemProps: [], // 传给batItem子组件的数据
+        propsData: [], // 传给batItem子组件的数据
         submitLotteryData: [], //最终的投注数据
+        // initNumData: [], //初始保存的数据
         checkNumberItems: [
           // {
           //   title: '第一位',
@@ -1821,6 +1823,7 @@
           mulActive: [false, false, false, false, false, false, false, false, false, false, false], // 用来存储高亮的状态
         }
       ]
+      // this.initNumData = this.checkNumberItems
     },
     methods: {
       toRight() {
@@ -1886,16 +1889,16 @@
             }
           }
         })
-        console.log('大一')
-        console.log(this.checkNumberItems)
+        // console.log('大一')
+        // console.log(this.checkNumberItems)
       },
       // 添加数据
-      addBatItemProps(item, odds) {
+      addpropsData(item, odds) {
         console.log(item, odds)
         item.selected = !item.selected
         let subIndex = null
-        for (let i = 0; i < this.batItemProps.length; i++) {
-          if (this.batItemProps[i].value === item.num) {
+        for (let i = 0; i < this.propsData.length; i++) {
+          if (this.propsData[i].value === item.num) {
             subIndex = i
           }
         }
@@ -1910,10 +1913,10 @@
             bonus: 0.00,
             selected: item.selected
           }
-          this.batItemProps.unshift(itemObj)
+          this.propsData.unshift(itemObj)
         } else {
           // 说明subIndex经过for循环赋值，也就是原数组有此项，应该删除
-          this.batItemProps.splice(subIndex, 1)
+          this.propsData.splice(subIndex, 1)
         }
       },
       // 子传父，清除active类
@@ -1927,6 +1930,14 @@
             item.selected = false
           }
         })
+      },
+      // 子传父，删除
+      delPropsData(params) {
+        // console.log(this.propsData)
+        // 拿到索引
+        // console.log(params)
+        this.propsData.splice(params,1)
+        // console.log(this.propsData)
       },
       toggleSelected(item, index2) {
         console.log(item) // 当前所在的数组
@@ -2025,12 +2036,19 @@
             selectedNumArr: this.qrxhData.selectNumArr,
             num: this.selectedInfo.bittingNumber,
             bnum: this.inputValue,
-            total: 1930.5,
+            total: this.money* this.inputValue,
             flag: '元'
           }
           console.log(item,10)
-          this.batItemProps.push(item)
-          console.log(this.batItemProps,'要传给子组件的数据')
+          this.propsData.push(item)
+          console.log(this.propsData,'要传给子组件的数据')
+          // 清空号码组件
+          this.qrxhData.num = 0
+          for (let i = 0; i < this.checkNumberItems.length; i++) {
+            for (let j = 0; j <  this.checkNumberItems[i].mulActive.length; j++) {
+              this.checkNumberItems[i].mulActive[j] = false
+            }
+          }
         }
       }
     },
@@ -2045,11 +2063,21 @@
         this.detailJsonData.map(item => {
           for(let i in item.play) {
             if (item.play[i].value === newVal) {
-              console.log(item.play[i].detailContent)
+              console.log(item.play[i].detailContent, '好')
               this.checkNumberItems = item.play[i].detailContent
+              // this.initNumData = item.play[i].detailContent
             }
           }
         })
+      },
+      'propsData': function (nVal, oVal) {
+        // console.log(nVal,'好')
+        this.betNum = 0
+        this.betMoneyTotal = 0
+        for (let i = 0; i < nVal.length; i++) {
+          this.betNum += nVal[i].num
+          this.betMoneyTotal += nVal[i].num * nVal[i].bnum * 2
+        }
       }
     },
     computed: {
