@@ -3,7 +3,7 @@
     <div class="betTitle clearf">
       <div class="betLogo">
         <h2>{{pageAllData[routerId].name}}</h2>
-        <i class="iconfont icon-kuaisan"></i>
+        <i class="iconfont icon-xuan"></i>
       </div>
       <div class="time">
         <div class="timeTitle" style="opacity: 1;">
@@ -124,7 +124,8 @@
                 <option value="0.01">分</option>
               </select>
               共
-              <i>{{qrxhData.total}}.00</i>
+              <!--<i>{{qrxhData.total}}.00</i>-->
+              <i>{{qrxhDataTotal}}.00</i>
               元
             </p>
             <a class="betBtn ClickShade" @click="confirm">确认选号</a>
@@ -230,732 +231,6 @@
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-  .k3 {
-    background: #fff;
-    border: 1px solid #ccc;
-    position: relative;
-    .betTitle {
-      padding: 15px;
-      .announced, .betLogo, .time {
-        background: url(http://imagess-google.com/system/pc/k3/betBg.png);
-        float: left;
-        height: 140px;
-        border-radius: 6px;
-      }
-      .announcedTitle, h2, .timeTitle {
-        text-align: center;
-        margin: 15px 0;
-        font-size: 14px;
-        color: #333;
-        font-weight: 700;
-        b {
-          color: #f33;
-          margin: 0 5px;
-        }
-      }
-      .betLogo {
-        width: 284px;
-        margin-right: 10px;
-        text-align: center;
-        h2 {
-          font-size: 24px;
-        }
-        i {
-          font-size: 60px;
-          line-height: 70px;
-          border-radius: 50%;
-          padding: 4px;
-          position: relative;
-          margin-left: -52px;
-          top: -3px;
-          color: #e41404;
-          &:before {
-            content: '';
-            position: absolute;
-            display: block;
-            height: 1px;
-            width: 36px;
-            box-shadow: 0 0 10px 2px #b7a4a4;
-            background-color: #dac9c9;
-            z-index: 1;
-            left: 12px;
-            bottom: 3px;
-          }
-          &:after {
-            content: '\e644';
-            position: absolute;
-            z-index: 2;
-            left: 0;
-            top: 0;
-          }
-        }
-      }
-      .time {
-        width: 380px;
-        text-align: center;
-        margin-right: 10px;
-        em {
-          display: inline-block;
-          height: 52px;
-          color: #fff;
-          font-size: 38px;
-          line-height: 52px;
-          font-family: "Microsoft YaHei";
-          margin-top: 6px;
-          width: 200px;
-          background-color: #455467;
-          border-radius: 3px;
-          text-shadow: 0 1px 1px #000;
-        }
-      }
-      .announced {
-        width: 284px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        .announcedTitle {
-          margin-bottom: 0;
-        }
-        .announcedNo {
-          display: inline-block;
-          margin: 0 auto;
-          margin-top: 2px;
-          position: relative;
-          z-index: 4;
-          img {
-            margin: 0;
-            margin-top: 9px;
-            & + img {
-              margin-left: 19px;
-            }
-          }
-          li {
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
-            text-align: center;
-            margin: 19px 22px 0 0;
-            float: left;
-            background: url(http://imagess-google.com/system/pc/k3/open_num.png) no-repeat center 0;
-            &:last-child {
-              margin-right: 0;
-            }
-          }
-        }
-      }
-      #Results {
-        .announcedNo4 {
-          background-position: 0 0;
-        }
-        .announcedNo5 {
-          background-position: 0 0;
-        }
-        .announcedNo6 {
-          background-position: 0 -122px;
-        }
-      }
-    }
-    .betContent {
-      border-top: 1px solid #ddd;
-      .betLeft {
-        float: left;
-        width: 740px;
-        min-height: 500px;
-        position: relative;
-        .sscCheckNumber {
-          margin: 24px 15px;
-          padding: 15px 0 5px;
-          background: url(http://imagess-google.com/system/pc/k3/betBg.png);
-          border-radius: 6px;
-          ul {
-            li {
-              display: table;
-              margin: 10px 0;
-
-            }
-          }
-          .buyNumberTitle {
-            width: 55px;
-            height: 26px;
-            line-height: 26px;
-            font-size: 12px;
-            background-color: #455467;
-            color: #fff;
-            text-align: center;
-            border-radius: 0 3px 3px 0;
-            margin: 11px 10px 11px 0;
-            position: relative;
-            i {
-              position: absolute;
-              display: block;
-              right: -5px;
-              top: 8px;
-              border-top: 5px solid transparent;
-              border-left: 5px solid #455467;
-              border-bottom: 5px solid transparent;
-            }
-          }
-          .buyNumber {
-            text-align: left;
-            padding: 0 4px;
-            min-width: 500px;
-            margin: 5px 0;
-            a {
-              width: 38px;
-              height: 38px;
-              display: inline-block;
-              border-radius: 50%;
-              margin: 0 6px 10px;
-              border: 1px solid #c0c5d2;
-              line-height: 38px;
-              font-size: 18px;
-              color: #000;
-              box-shadow: 0 1px 3px #d4d4d4, inset 0 -1px 5px #fff;
-              text-align: center;
-              background: linear-gradient(180deg, #fff 0, #f1efef);
-              cursor: pointer;
-              box-sizing: border-box;
-              &:hover {
-                background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
-                border: 1px solid #d24c10;
-                color: #fff;
-                text-decoration: blink;
-                box-shadow: inherit;
-              }
-            }
-            .curr {
-              background: linear-gradient(180deg, #d64b15 30%, #ea6a31) !important;
-              border: 1px solid #d24c10 !important;
-              color: #fff !important;
-              text-decoration: blink !important;
-              box-shadow: inherit !important;
-            }
-          }
-          .buyNumberFilter {
-            padding: 0;
-            width: 82px;
-            margin-left: 4px;
-            a {
-              width: 21px;
-              height: 21px;
-              display: block;
-              float: left;
-              color: #666;
-              font-size: 12px;
-              border-radius: 2px;
-              margin: 2px 3px;
-              border: 1px solid #c1c6d2;
-              line-height: 18px;
-              box-shadow: inset 0 -1px 5px #fff;
-              text-align: center;
-              background: linear-gradient(180deg, #fff 0, #f1efef);
-              box-sizing: border-box;
-              &:hover {
-                background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
-                border: 1px solid #d24c10;
-                color: #fff;
-                text-decoration: blink;
-                box-shadow: inherit;
-              }
-            }
-          }
-          .buyNumberTitle, .buyNumber, .buyNumberFilter {
-            display: block;
-            float: left;
-          }
-        }
-        .betNavCon {
-          width: 100%;
-          overflow: hidden;
-          .betNav {
-            height: 38px;
-            margin: 0 34px;
-            transition: .6s;
-            overflow: hidden;
-            & > li {
-              display: inline-block;
-              width: 112px;
-              float: left;
-              text-align: center;
-              box-sizing: border-box;
-              font-size: 16px;
-              line-height: 39px;
-              background-color: #fff;
-              cursor: pointer;
-              color: #333;
-              & + li {
-                border-left: 1px solid #ddd;
-              }
-              &:last-child {
-                border-right: 1px solid #ddd;
-              }
-            }
-            .active {
-              background-color: #ea6a31;
-              color: #fff;
-            }
-          }
-          .active {
-            background-color: #ea6a31;
-            color: #fff;
-          }
-        }
-        .betNavtab {
-          height: 38px;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 35px;
-          background: linear-gradient(#fff 2%, #ececec);
-          border-left: 1px solid #ddd;
-          cursor: auto;
-          span {
-            display: block;
-            width: 16px;
-            height: 16px;
-            border-radius: 8px;
-            border: 1px solid;
-            margin: 11px 9.5px;
-            cursor: pointer;
-          }
-          em {
-            width: 0;
-            height: 0;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 4px solid;
-            display: block;
-            margin: 6px 3px;
-            transition: .5s;
-            transform: rotate(-90deg);
-            margin-left: 4px;
-            &:before {
-              content: '';
-              display: block;
-              width: 38px;
-              height: 35px;
-              position: absolute;
-              margin-left: -19px;
-              margin-top: -21px;
-            }
-          }
-        }
-        .left {
-          left: 0;
-          border-right: 1px solid #ddd;
-          border-left: none;
-          em {
-            transform: rotate(90deg);
-            margin-left: 3px;
-          }
-        }
-        // 第二个div
-        .betFilter {
-          text-align: left;
-          width: 739px;
-          height: 52px;
-          box-sizing: border-box;
-          padding: 10px 15px;
-          border-bottom: 1px solid #ddd;
-          background-color: #f2f4f7;
-          border-top: 1px solid #ddd;
-          .curr, li:hover {
-            background-color: #ff9726;
-            color: #fff;
-          }
-          li {
-            display: inline;
-            padding: 4px 5px;
-            line-height: 30px;
-            border-radius: 3px;
-            cursor: pointer;
-            text-align: center;
-            color: #555;
-            font-size: 14px;
-            margin-right: 13px;
-            margin-bottom: 5px;
-          }
-        }
-        .betFilterAnd {
-          padding: 10px 15px;
-          font-size: 12px;
-          border-bottom: 1px solid #ccc;
-          line-height: 2.2;
-          li {
-            margin: 4px 0;
-          }
-          span {
-            vertical-align: top;
-            display: inline-block;
-            font-weight: 700;
-            color: #555;
-            width: 64px;
-            position: relative;
-            margin-left: 22px;
-            &:before {
-              content: '';
-              display: block;
-              width: 1px;
-              height: 54px;
-              background-color: #e7e7e8;
-              position: absolute;
-              top: -14px;
-              left: -16px;
-            }
-            &:after {
-              content: '';
-              display: block;
-              width: 11px;
-              height: 11px;
-              background-color: #fff;
-              border: 1px solid #e7e7e8;
-              border-radius: 50%;
-              position: absolute;
-              top: 7px;
-              left: -21px;
-            }
-          }
-          div {
-            display: inline-block;
-            max-width: 620px;
-            a {
-              color: #555;
-              margin-right: 15px;
-              padding: 4px 6px;
-              border-radius: 3px;
-              user-select: none;
-              cursor: pointer;
-            }
-            .curr, a:hover {
-              background-color: #ff9726;
-              color: #fff;
-            }
-          }
-        }
-        .betTip {
-          padding: 3px 15px;
-          color: #555;
-          background: #fdfdfd;
-          i {
-            color: #ff9831;
-            font-size: 14px;
-            /*margin-right: 3px;*/
-          }
-        }
-        .checkNumber {
-          margin: 24px 15px;
-          padding: 25px 0;
-          background: url(http://imagess-google.com/system/pc/k3/betBg.png);
-          border-radius: 6px;
-          ul {
-            text-align: center;
-            li {
-              display: inline-block;
-              margin: 12px 15px;
-              vertical-align: top;
-              a {
-                box-shadow: 0 1px 5px #d4d4d4;
-                display: block;
-                background: linear-gradient(180deg, #fff 0, #f1efef 90%, #f7f7f7);
-                border-radius: 5px;
-                border: 1px solid #c0c5d2;
-                height: 50px;
-                line-height: 50px;
-                font-size: 30px;
-                color: #000;
-                text-align: center;
-                min-width: 52px;
-              }
-              span {
-                color: #333;
-              }
-            }
-            a, a:hover {
-              background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
-              border: 1px solid #d24c10;
-              color: #fff;
-              text-decoration: blink;
-              box-sizing: inherit;
-            }
-            .active {
-              a {
-                background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
-                border: 1px solid #d24c10;
-                color: #fff;
-                text-decoration: blink;
-                box-sizing: inherit;
-              }
-            }
-          }
-        }
-        .checkedList {
-          border: 1px solid #ddd;
-          margin: 15px;
-          padding: 10px;
-          height: 188px;
-          overflow-y: auto;
-          margin-top: 40px;
-          background: #fff;
-        }
-        .betTotal {
-          padding: 10px;
-          text-align: center;
-          font-size: 16px;
-          em, i {
-            color: #f37036;
-          }
-        }
-        .betBtn {
-          display: block;
-          margin: 0 auto;
-          line-height: 44px;
-          font-size: 20px;
-          border-radius: 5px;
-          width: 150px;
-          text-align: center;
-          background: #ea6a31;
-          color: #fff;
-          margin-bottom: 40px;
-        }
-        .Panel {
-          .betTotal {
-            margin: 16px 0;
-            i {
-              color: #f37036;
-            }
-            .inputAdd {
-              display: inline-block;
-              vertical-align: bottom;
-              margin: 0 5px;
-              i {
-                background-color: #f4f4f4;
-                height: 30px;
-                line-height: 28px;
-                width: 21px;
-                text-align: center;
-                float: left;
-                border: 1px solid #e3e4e6;
-                color: #686869;
-                user-select: none;
-                cursor: pointer;
-              }
-              i:first-child {
-                border-right: none;
-                box-sizing: border-box;
-              }
-              i:last-child {
-                border-left: none;
-                box-sizing: border-box;
-              }
-              .off {
-                color: #c3c8d3;
-                cursor: default;
-              }
-              input {
-                width: 60px;
-                border: 1px solid #cecece;
-                height: 30px;
-                box-sizing: border-box;
-                padding: 4px 5px;
-                text-align: center;
-                border-radius: 0;
-                vertical-align: baseline;
-              }
-            }
-            select {
-              border: 1px solid #cecece;
-              height: 30px;
-              text-align: center;
-              padding: 0 5px;
-              margin: 0 5px;
-              border-radius: 0;
-            }
-          }
-          .ClickShade {
-            cursor: pointer;
-          }
-        }
-      }
-      .betRight {
-        float: left;
-        width: 258px;
-        min-height: 500px;
-        border-left: 1px solid #ddd;
-        box-sizing: border-box;
-        .box {
-          h3 {
-            border-bottom: 1px solid #ddd;
-            background-color: #455467;
-            color: #fff;
-            border-radius: 3px;
-            display: inline-block;
-            margin: 15px 0 6px 8px;
-            text-align: center;
-            height: 26px;
-            font-weight: 100;
-            line-height: 26px;
-            font-size: 12px;
-            padding: 0 6px;
-          }
-          .more {
-            display: inline-block;
-            width: 156px !important;
-            margin: 0 8px;
-            height: 26px;
-            text-align: right;
-            a {
-              background-color: #fff;
-              display: inline-block;
-              line-height: 13px;
-              color: #555;
-              padding-right: 5px;
-            }
-          }
-          .ResultsList {
-            min-height: 279px;
-            table {
-              text-align: center;
-              border-collapse: collapse;
-              border-spacing: 0;
-              th {
-                background-color: #f2f4f7;
-                height: 28px;
-                line-height: 28px;
-                text-align: center;
-                font-weight: 400;
-                color: #666;
-                border-bottom: 1px solid #ddd;
-              }
-              td {
-                height: 24px;
-                line-height: 24px;
-                text-align: center;
-                color: #666;
-                border-right: 1px dotted #ebebeb;
-                border-bottom: 1px dotted #ebebeb;
-                &:first-child {
-                  color: #555;
-                }
-                &:nth-child(2) {
-                  color: #ff9600;
-                }
-                em {
-                  width: 18px;
-                  height: 18px;
-                  display: inline-block;
-                  border-radius: 2px;
-                  color: #fff;
-                  vertical-align: middle;
-                  line-height: 18px;
-                }
-                .xiao, .shuang {
-                  background-color: #ff9726;
-                }
-              }
-            }
-          }
-          table {
-            text-align: center;
-            border-collapse: collapse;
-            border-spacing: 0;
-            th {
-              background-color: #f2f4f7;
-              height: 28px;
-              text-align: center;
-              font-weight: 400;
-              color: #666;
-              border-bottom: 1px solid #ddd;
-              box-sizing: border-box;
-            }
-            td {
-              height: 24px;
-              line-height: 24px;
-              text-align: center;
-              color: #666;
-              border-right: 1px dotted #ebebeb;
-              border-bottom: 1px solid #ebebeb;
-              &:first-child {
-                color: #555;
-              }
-            }
-          }
-        }
-        .mybet {
-          .more {
-            width: 100% !important;
-            margin: 0;
-            border-bottom: 1px solid #ebebeb;
-          }
-        }
-        .winningList {
-          h3 {
-            cursor: pointer;
-          }
-          .notSelect {
-            background-color: #d6d6d6;
-            color: #666;
-            cursor: pointer;
-          }
-          div {
-            float: left;
-            width: 78%;
-            line-height: 1.5;
-          }
-          .winnerListSlide {
-            height: 539px;
-          }
-          .winner-title {
-            width: 100%;
-            text-align: center;
-            background-color: #f2f4f7;
-            height: 28px;
-            line-height: 28px;
-            font-weight: 400;
-            color: #666;
-            border-bottom: 1px solid #ddd;
-          }
-          .bd {
-            width: 100%;
-            padding: 0;
-            .tempWrap {
-              width: 100%;
-              padding: 0;
-              vertical-align: inherit;
-              li {
-                padding: 5px 15px;
-                border-bottom: 1px dotted #ddd;
-                height: 40px;
-                img {
-                  height: 36px;
-                  width: 36px;
-                  border-radius: 50%;
-                  float: left;
-                  margin-top: 2px;
-                  margin-right: 9px;
-                  transition: .5s;
-                }
-                .color {
-                  /*color: #fff;*/
-                }
-                p {
-                  float: left;
-                  line-height: 1.7;
-                  span {
-                    color: #f63745;
-                    margin: 0 5px;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-</style>
-
 <script>
   import BatItem from './batItem'
   import { tagToPlayMapSYX5Data } from '../components/tagToPlayMapSYX5'
@@ -967,6 +242,7 @@
         qrxhData: {
           num: 0,
           total: 0,
+          selectNumArr: []
         },
         selectedInfo: {},
         currentPlayDetial: '', //当前玩法的细分玩法
@@ -2615,7 +1891,7 @@
       },
       // 添加数据
       addBatItemProps(item, odds) {
-        // console.log(item, odds)
+        console.log(item, odds)
         item.selected = !item.selected
         let subIndex = null
         for (let i = 0; i < this.batItemProps.length; i++) {
@@ -2673,6 +1949,16 @@
         console.log(this.selectedInfo)
         this.qrxhData.num = this.selectedInfo.bittingNumber
         this.qrxhData.total = this.selectedInfo.price
+        this.qrxhData.selectNumArr = [] // 置空
+        for (let i = 0; i < this.selectedInfo.selectedNum.length; i++) {
+          let strArr = []
+          for (let j = 0; j < this.selectedInfo.selectedNum[i].mulActive.length; j++) {
+            if (this.selectedInfo.selectedNum[i].mulActive[j] == true) {
+              strArr.push(this.selectedInfo.selectedNum[i].numberArr[j])
+            }
+          }
+          this.qrxhData.selectNumArr.push(strArr)
+        }
       },
       selectAll(item) {
         // console.log(item.mulActive)
@@ -2733,14 +2019,18 @@
         if (this.qrxhData.num === 0) {
           alert('当前为0注，请投注')
         } else {
+          // 奇
           let item = {
             play: `${this.selectedInfo.type},${this.selectedInfo.detial}`,
+            selectedNumArr: this.qrxhData.selectNumArr,
             num: this.selectedInfo.bittingNumber,
             bnum: this.inputValue,
             total: 1930.5,
             flag: '元'
           }
+          console.log(item,10)
           this.batItemProps.push(item)
+          console.log(this.batItemProps,'要传给子组件的数据')
         }
       }
     },
@@ -2761,9 +2051,739 @@
           }
         })
       }
+    },
+    computed: {
+      qrxhDataTotal: function () {
+        return this.qrxhData.num * 2 * this.inputValue
+      }
     }
   }
 </script>
+<style lang="scss" scoped>
+  .k3 {
+    background: #fff;
+    border: 1px solid #ccc;
+    position: relative;
+    .betTitle {
+      padding: 15px;
+      .announced, .betLogo, .time {
+        background: url(http://imagess-google.com/system/pc/k3/betBg.png);
+        float: left;
+        height: 140px;
+        border-radius: 6px;
+      }
+      .announcedTitle, h2, .timeTitle {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 14px;
+        color: #333;
+        font-weight: 700;
+        b {
+          color: #f33;
+          margin: 0 5px;
+        }
+      }
+      .betLogo {
+        width: 284px;
+        margin-right: 10px;
+        text-align: center;
+        h2 {
+          font-size: 24px;
+        }
+        i {
+          font-size: 60px;
+          line-height: 70px;
+          border-radius: 50%;
+          padding: 4px;
+          position: relative;
+          margin-left: -52px;
+          top: -3px;
+          color: #218ddd;
+          &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 1px;
+            width: 36px;
+            box-shadow: 0 0 10px 2px #b7a4a4;
+            background-color: #dac9c9;
+            z-index: 1;
+            left: 12px;
+            bottom: 3px;
+          }
+          &:after {
+            content: '\e61b';
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+      .time {
+        width: 380px;
+        text-align: center;
+        margin-right: 10px;
+        em {
+          display: inline-block;
+          height: 52px;
+          color: #fff;
+          font-size: 38px;
+          line-height: 52px;
+          font-family: "Microsoft YaHei";
+          margin-top: 6px;
+          width: 200px;
+          background-color: #455467;
+          border-radius: 3px;
+          text-shadow: 0 1px 1px #000;
+        }
+      }
+      .announced {
+        width: 284px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        .announcedTitle {
+          margin-bottom: 0;
+        }
+        .announcedNo {
+          display: inline-block;
+          margin: 0 auto;
+          margin-top: 2px;
+          position: relative;
+          z-index: 4;
+          img {
+            margin: 0;
+            margin-top: 9px;
+            & + img {
+              margin-left: 19px;
+            }
+          }
+          li {
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            margin: 19px 22px 0 0;
+            float: left;
+            background: url(http://imagess-google.com/system/pc/k3/open_num.png) no-repeat center 0;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      #Results {
+        .announcedNo4 {
+          background-position: 0 0;
+        }
+        .announcedNo5 {
+          background-position: 0 0;
+        }
+        .announcedNo6 {
+          background-position: 0 -122px;
+        }
+      }
+    }
+    .betContent {
+      border-top: 1px solid #ddd;
+      .betLeft {
+        float: left;
+        width: 740px;
+        min-height: 500px;
+        position: relative;
+        .sscCheckNumber {
+          margin: 24px 15px;
+          padding: 15px 0 5px;
+          background: url(http://imagess-google.com/system/pc/k3/betBg.png);
+          border-radius: 6px;
+          ul {
+            li {
+              display: table;
+              margin: 10px 0;
+
+            }
+          }
+          .buyNumberTitle {
+            width: 55px;
+            height: 26px;
+            line-height: 26px;
+            font-size: 12px;
+            background-color: #455467;
+            color: #fff;
+            text-align: center;
+            border-radius: 0 3px 3px 0;
+            margin: 11px 10px 11px 0;
+            position: relative;
+            i {
+              position: absolute;
+              display: block;
+              right: -5px;
+              top: 8px;
+              border-top: 5px solid transparent;
+              border-left: 5px solid #455467;
+              border-bottom: 5px solid transparent;
+            }
+          }
+          .buyNumber {
+            text-align: left;
+            padding: 0 4px;
+            min-width: 500px;
+            margin: 5px 0;
+            a {
+              width: 38px;
+              height: 38px;
+              display: inline-block;
+              border-radius: 50%;
+              margin: 0 6px 10px;
+              border: 1px solid #c0c5d2;
+              line-height: 38px;
+              font-size: 18px;
+              color: #000;
+              box-shadow: 0 1px 3px #d4d4d4, inset 0 -1px 5px #fff;
+              text-align: center;
+              background: linear-gradient(180deg, #fff 0, #f1efef);
+              cursor: pointer;
+              box-sizing: border-box;
+              &:hover {
+                background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
+                border: 1px solid #d24c10;
+                color: #fff;
+                text-decoration: blink;
+                box-shadow: inherit;
+              }
+            }
+            .curr {
+              background: linear-gradient(180deg, #d64b15 30%, #ea6a31) !important;
+              border: 1px solid #d24c10 !important;
+              color: #fff !important;
+              text-decoration: blink !important;
+              box-shadow: inherit !important;
+            }
+          }
+          .buyNumberFilter {
+            padding: 0;
+            width: 82px;
+            margin-left: 4px;
+            a {
+              width: 21px;
+              height: 21px;
+              display: block;
+              float: left;
+              color: #666;
+              font-size: 12px;
+              border-radius: 2px;
+              margin: 2px 3px;
+              border: 1px solid #c1c6d2;
+              line-height: 18px;
+              box-shadow: inset 0 -1px 5px #fff;
+              text-align: center;
+              background: linear-gradient(180deg, #fff 0, #f1efef);
+              box-sizing: border-box;
+              &:hover {
+                background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
+                border: 1px solid #d24c10;
+                color: #fff;
+                text-decoration: blink;
+                box-shadow: inherit;
+              }
+            }
+          }
+          .buyNumberTitle, .buyNumber, .buyNumberFilter {
+            display: block;
+            float: left;
+          }
+        }
+        .betNavCon {
+          width: 100%;
+          overflow: hidden;
+          .betNav {
+            height: 38px;
+            margin: 0 34px;
+            transition: .6s;
+            overflow: hidden;
+            & > li {
+              display: inline-block;
+              width: 112px;
+              float: left;
+              text-align: center;
+              box-sizing: border-box;
+              font-size: 16px;
+              line-height: 39px;
+              background-color: #fff;
+              cursor: pointer;
+              color: #333;
+              & + li {
+                border-left: 1px solid #ddd;
+              }
+              &:last-child {
+                border-right: 1px solid #ddd;
+              }
+            }
+            .active {
+              background-color: #ea6a31;
+              color: #fff;
+            }
+          }
+          .active {
+            background-color: #ea6a31;
+            color: #fff;
+          }
+        }
+        .betNavtab {
+          height: 38px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 35px;
+          background: linear-gradient(#fff 2%, #ececec);
+          border-left: 1px solid #ddd;
+          cursor: auto;
+          span {
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            border: 1px solid;
+            margin: 11px 9.5px;
+            cursor: pointer;
+          }
+          em {
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid;
+            display: block;
+            margin: 6px 3px;
+            transition: .5s;
+            transform: rotate(-90deg);
+            margin-left: 4px;
+            &:before {
+              content: '';
+              display: block;
+              width: 38px;
+              height: 35px;
+              position: absolute;
+              margin-left: -19px;
+              margin-top: -21px;
+            }
+          }
+        }
+        .left {
+          left: 0;
+          border-right: 1px solid #ddd;
+          border-left: none;
+          em {
+            transform: rotate(90deg);
+            margin-left: 3px;
+          }
+        }
+        // 第二个div
+        .betFilter {
+          text-align: left;
+          width: 739px;
+          height: 52px;
+          box-sizing: border-box;
+          padding: 10px 15px;
+          border-bottom: 1px solid #ddd;
+          background-color: #f2f4f7;
+          border-top: 1px solid #ddd;
+          .curr, li:hover {
+            background-color: #ff9726;
+            color: #fff;
+          }
+          li {
+            display: inline;
+            padding: 4px 5px;
+            line-height: 30px;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            color: #555;
+            font-size: 14px;
+            margin-right: 13px;
+            margin-bottom: 5px;
+          }
+        }
+        .betFilterAnd {
+          padding: 10px 15px;
+          font-size: 12px;
+          border-bottom: 1px solid #ccc;
+          line-height: 2.2;
+          li {
+            margin: 4px 0;
+          }
+          span {
+            vertical-align: top;
+            display: inline-block;
+            font-weight: 700;
+            color: #555;
+            width: 64px;
+            position: relative;
+            margin-left: 22px;
+            &:before {
+              content: '';
+              display: block;
+              width: 1px;
+              height: 54px;
+              background-color: #e7e7e8;
+              position: absolute;
+              top: -14px;
+              left: -16px;
+            }
+            &:after {
+              content: '';
+              display: block;
+              width: 11px;
+              height: 11px;
+              background-color: #fff;
+              border: 1px solid #e7e7e8;
+              border-radius: 50%;
+              position: absolute;
+              top: 7px;
+              left: -21px;
+            }
+          }
+          div {
+            display: inline-block;
+            max-width: 620px;
+            a {
+              color: #555;
+              margin-right: 15px;
+              padding: 4px 6px;
+              border-radius: 3px;
+              user-select: none;
+              cursor: pointer;
+            }
+            .curr, a:hover {
+              background-color: #ff9726;
+              color: #fff;
+            }
+          }
+        }
+        .betTip {
+          padding: 3px 15px;
+          color: #555;
+          background: #fdfdfd;
+          i {
+            color: #ff9831;
+            font-size: 14px;
+            /*margin-right: 3px;*/
+          }
+        }
+        .checkNumber {
+          margin: 24px 15px;
+          padding: 25px 0;
+          background: url(http://imagess-google.com/system/pc/k3/betBg.png);
+          border-radius: 6px;
+          ul {
+            text-align: center;
+            li {
+              display: inline-block;
+              margin: 12px 15px;
+              vertical-align: top;
+              a {
+                box-shadow: 0 1px 5px #d4d4d4;
+                display: block;
+                background: linear-gradient(180deg, #fff 0, #f1efef 90%, #f7f7f7);
+                border-radius: 5px;
+                border: 1px solid #c0c5d2;
+                height: 50px;
+                line-height: 50px;
+                font-size: 30px;
+                color: #000;
+                text-align: center;
+                min-width: 52px;
+              }
+              span {
+                color: #333;
+              }
+            }
+            a, a:hover {
+              background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
+              border: 1px solid #d24c10;
+              color: #fff;
+              text-decoration: blink;
+              box-sizing: inherit;
+            }
+            .active {
+              a {
+                background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
+                border: 1px solid #d24c10;
+                color: #fff;
+                text-decoration: blink;
+                box-sizing: inherit;
+              }
+            }
+          }
+        }
+        .checkedList {
+          border: 1px solid #ddd;
+          margin: 15px;
+          padding: 10px;
+          height: 188px;
+          overflow-y: auto;
+          margin-top: 40px;
+          background: #fff;
+        }
+        .betTotal {
+          padding: 10px;
+          text-align: center;
+          font-size: 16px;
+          em, i {
+            color: #f37036;
+          }
+        }
+        .betBtn {
+          display: block;
+          margin: 0 auto;
+          line-height: 44px;
+          font-size: 20px;
+          border-radius: 5px;
+          width: 150px;
+          text-align: center;
+          background: #ea6a31;
+          color: #fff;
+          margin-bottom: 40px;
+        }
+        .Panel {
+          .betTotal {
+            margin: 16px 0;
+            i {
+              color: #f37036;
+            }
+            .inputAdd {
+              display: inline-block;
+              vertical-align: bottom;
+              margin: 0 5px;
+              i {
+                background-color: #f4f4f4;
+                height: 30px;
+                line-height: 28px;
+                width: 21px;
+                text-align: center;
+                float: left;
+                border: 1px solid #e3e4e6;
+                color: #686869;
+                user-select: none;
+                cursor: pointer;
+              }
+              i:first-child {
+                border-right: none;
+                box-sizing: border-box;
+              }
+              i:last-child {
+                border-left: none;
+                box-sizing: border-box;
+              }
+              .off {
+                color: #c3c8d3;
+                cursor: default;
+              }
+              input {
+                width: 60px;
+                border: 1px solid #cecece;
+                height: 30px;
+                box-sizing: border-box;
+                padding: 4px 5px;
+                text-align: center;
+                border-radius: 0;
+                vertical-align: baseline;
+              }
+            }
+            select {
+              border: 1px solid #cecece;
+              height: 30px;
+              text-align: center;
+              padding: 0 5px;
+              margin: 0 5px;
+              border-radius: 0;
+            }
+          }
+          .ClickShade {
+            cursor: pointer;
+          }
+        }
+      }
+      .betRight {
+        float: left;
+        width: 258px;
+        min-height: 500px;
+        border-left: 1px solid #ddd;
+        box-sizing: border-box;
+        .box {
+          h3 {
+            border-bottom: 1px solid #ddd;
+            background-color: #455467;
+            color: #fff;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 15px 0 6px 8px;
+            text-align: center;
+            height: 26px;
+            font-weight: 100;
+            line-height: 26px;
+            font-size: 12px;
+            padding: 0 6px;
+          }
+          .more {
+            display: inline-block;
+            width: 156px !important;
+            margin: 0 8px;
+            height: 26px;
+            text-align: right;
+            a {
+              background-color: #fff;
+              display: inline-block;
+              line-height: 13px;
+              color: #555;
+              padding-right: 5px;
+            }
+          }
+          .ResultsList {
+            min-height: 279px;
+            table {
+              text-align: center;
+              border-collapse: collapse;
+              border-spacing: 0;
+              th {
+                background-color: #f2f4f7;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                font-weight: 400;
+                color: #666;
+                border-bottom: 1px solid #ddd;
+              }
+              td {
+                height: 24px;
+                line-height: 24px;
+                text-align: center;
+                color: #666;
+                border-right: 1px dotted #ebebeb;
+                border-bottom: 1px dotted #ebebeb;
+                &:first-child {
+                  color: #555;
+                }
+                &:nth-child(2) {
+                  color: #ff9600;
+                }
+                em {
+                  width: 18px;
+                  height: 18px;
+                  display: inline-block;
+                  border-radius: 2px;
+                  color: #fff;
+                  vertical-align: middle;
+                  line-height: 18px;
+                }
+                .xiao, .shuang {
+                  background-color: #ff9726;
+                }
+              }
+            }
+          }
+          table {
+            text-align: center;
+            border-collapse: collapse;
+            border-spacing: 0;
+            th {
+              background-color: #f2f4f7;
+              height: 28px;
+              text-align: center;
+              font-weight: 400;
+              color: #666;
+              border-bottom: 1px solid #ddd;
+              box-sizing: border-box;
+            }
+            td {
+              height: 24px;
+              line-height: 24px;
+              text-align: center;
+              color: #666;
+              border-right: 1px dotted #ebebeb;
+              border-bottom: 1px solid #ebebeb;
+              &:first-child {
+                color: #555;
+              }
+            }
+          }
+        }
+        .mybet {
+          .more {
+            width: 100% !important;
+            margin: 0;
+            border-bottom: 1px solid #ebebeb;
+          }
+        }
+        .winningList {
+          h3 {
+            cursor: pointer;
+          }
+          .notSelect {
+            background-color: #d6d6d6;
+            color: #666;
+            cursor: pointer;
+          }
+          div {
+            float: left;
+            width: 78%;
+            line-height: 1.5;
+          }
+          .winnerListSlide {
+            height: 539px;
+          }
+          .winner-title {
+            width: 100%;
+            text-align: center;
+            background-color: #f2f4f7;
+            height: 28px;
+            line-height: 28px;
+            font-weight: 400;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+          }
+          .bd {
+            width: 100%;
+            padding: 0;
+            .tempWrap {
+              width: 100%;
+              padding: 0;
+              vertical-align: inherit;
+              li {
+                padding: 5px 15px;
+                border-bottom: 1px dotted #ddd;
+                height: 40px;
+                img {
+                  height: 36px;
+                  width: 36px;
+                  border-radius: 50%;
+                  float: left;
+                  margin-top: 2px;
+                  margin-right: 9px;
+                  transition: .5s;
+                }
+                .color {
+                  /*color: #fff;*/
+                }
+                p {
+                  float: left;
+                  line-height: 1.7;
+                  span {
+                    color: #f63745;
+                    margin: 0 5px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
 
 
 
