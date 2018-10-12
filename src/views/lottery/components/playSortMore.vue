@@ -95,10 +95,9 @@
 <style lang="scss" scoped>
   @import "@/styles/index.scss";
   .playSortMore {
-    position: fixed;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.4);
+    background: red;
   }
 </style>

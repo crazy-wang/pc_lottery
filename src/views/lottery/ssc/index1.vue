@@ -58,6 +58,7 @@
           </a>
         </div>
         <div>
+          <playSortMore @playBoardType="playBoardType" :tagToPlayMap="tagToPlayMap" v-show="true" @tagSelected="tagSelected" v-model="playBoardData"></playSortMore>
           <div>
             <ul class="betFilter">
               <li v-for="(item, index) in playItems" :class="{curr: currentPlayIndex === index}"
@@ -82,6 +83,7 @@
           </div>
           <!--十一选五组件-->
           <div class="sscCheckNumber">
+            <playBoard ref="playBoard" @playBoardType="playBoardType" :playBoardData="playBoardData" v-model="selectedNumberData" @change="selectedNumberDataMethod"></playBoard>
             <ul>
               <li>
                 <div class="clearf selectSYX5" v-for="(item, index1) in checkNumberItems" :key="item.title">
@@ -233,12 +235,15 @@
 </template>
 <script>
   import BatItem from './batItem'
-  import { tagToPlayMapSYX5Data } from '../components/tagToPlayMapSYX5'
+  import { tagToPlayMap } from '../components/tagToPlayMap'
   import playMethodsSyx5 from '../../../api/playMethodsSyx5'
+  import playSortMore from '../components/playSortMore'
+  import playBoard from '../components/playBoard'
 
   export default {
     data() {
       return {
+        tagToPlayMap: tagToPlayMap,
         money: 1930.5,
         qrxhData: {
           num: 0,
@@ -2093,7 +2098,9 @@
       }
     },
     components: {
-      BatItem
+      BatItem,
+      playSortMore,
+      playBoard
     },
     watch: {
       // 'currentPlayDetial': function(newVal, oldVal) {
