@@ -1860,6 +1860,14 @@
           this.currentPlayDetial = this.playItems[index] // 当前玩法
           console.log('当前玩法')
           console.log(this.currentPlayDetial)
+          this.qrxhData.num = 0;
+          this.qrxhData.total = 0;
+          // 清空号码组件
+          for (let i = 0; i < this.checkNumberItems.length; i++) {
+            for (let j = 0; j <  this.checkNumberItems[i].mulActive.length; j++) {
+              this.checkNumberItems[i].mulActive[j] = false
+            }
+          }
           this.detailJsonData = this.jsonData.map(item => {
             return {
               checked: item.tag === this.currentPlayDetial ? true : false,
@@ -1880,6 +1888,14 @@
       filterDetailPlay(params) {
         console.log('当前点击的是')
         console.log(params)
+        this.qrxhData.num = 0;
+        this.qrxhData.total = 0;
+        // 清空号码组件
+        for (let i = 0; i < this.checkNumberItems.length; i++) {
+          for (let j = 0; j <  this.checkNumberItems[i].mulActive.length; j++) {
+            this.checkNumberItems[i].mulActive[j] = false
+          }
+        }
         this.currentPlayName = params
         this.detailJsonData.map(item => {
           for(let i in item.play) {
@@ -1971,6 +1987,24 @@
           this.qrxhData.selectNumArr.push(strArr)
         }
       },
+      // 父传子，子传父数据处理
+      syx5SelfComMethosd() {
+        this.selectedInfo = playMethodsSyx5(this.currentPlayDetial, this.currentPlayName, this.checkNumberItems)
+        console.log('=====')
+        console.log(this.selectedInfo)
+        this.qrxhData.num = this.selectedInfo.bittingNumber
+        this.qrxhData.total = this.selectedInfo.price
+        this.qrxhData.selectNumArr = [] // 置空
+        for (let i = 0; i < this.selectedInfo.selectedNum.length; i++) {
+          let strArr = []
+          for (let j = 0; j < this.selectedInfo.selectedNum[i].mulActive.length; j++) {
+            if (this.selectedInfo.selectedNum[i].mulActive[j] == true) {
+              strArr.push(this.selectedInfo.selectedNum[i].numberArr[j])
+            }
+          }
+          this.qrxhData.selectNumArr.push(strArr)
+        }
+      },
       selectAll(item) {
         // console.log(item.mulActive)
         item.mulActive = item.mulActive.map(i => i = true)
@@ -1981,6 +2015,7 @@
         //   console.log(i)
         // })
         // console.log(item.mulActive)
+        this.syx5SelfComMethosd()
       },
       selectBig(item) {
         // for (let i in item.mulActive) {
@@ -1992,12 +2027,14 @@
           i < 5 ? this.$set(item.mulActive, i, false) : this.$set(item.mulActive, i, true) // 解决vue响应问题
         }
         // console.log(item.mulActive)
+        this.syx5SelfComMethosd()
       },
       selectLittle(item) {
         for (let i in item.mulActive) {
           // item.mulActive[i] = i < 5 ? true : false
           i < 5 ? this.$set(item.mulActive, i, true) : this.$set(item.mulActive, i, false)
         }
+        this.syx5SelfComMethosd()
       },
       // 奇数
       selectOdd(item) {
@@ -2005,6 +2042,7 @@
           // item.mulActive[i] = i % 2 === 0 ? true : false
           i % 2 === 0 ? this.$set(item.mulActive, i, true) : this.$set(item.mulActive, i, false)
         }
+        this.syx5SelfComMethosd()
       },
       // 偶数
       selectEven(item) {
@@ -2012,9 +2050,11 @@
           // item.mulActive[i] = i % 2 === 0 ? false : true
           i % 2 === 0 ? this.$set(item.mulActive, i, false) : this.$set(item.mulActive, i, true)
         }
+        this.syx5SelfComMethosd()
       },
       selectClear(item) {
         item.mulActive = item.mulActive.map(i => i = false)
+        this.syx5SelfComMethosd()
       },
       reduceInputValue() {
         if (this.inputValue === 1) {
