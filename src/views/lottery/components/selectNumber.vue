@@ -6,6 +6,14 @@
     <div class="numberContent">
       <div class="number" v-for="item in numberData" :class="{'number-active': item.checked == true}" @click="checkItem(item)">{{item.label}}</div>
     </div>
+    <div class="buyNumberFilter">
+      <a href="javascript:;" @click="selectAll()">全</a>
+      <a href="javascript:;" @click="selectBig()">大</a>
+      <a href="javascript:;" @click="selectLittle()">小</a>
+      <a href="javascript:;" @click="selectOdd()">奇</a>
+      <a href="javascript:;" @click="selectEven()">偶</a>
+      <a href="javascript:;" @click="selectClear()">清</a>
+    </div>
   </div>
 </template>
 
@@ -46,9 +54,50 @@ export default {
 		    return item.checked == true
 	    })
 	    let emitData = {titleName: this.titleName, data: checkedData}
-	    console.log(emitData)
 	    this.$emit('input', emitData)
-    }
+    },
+    selectAll() {
+      // console.log(item.mulActive)
+      this.numberData.map(i => i.checked = true)
+      this.changeEmit()
+      // forEach没有返回值，没有创建新数组，也不会改变元素组，只是让每个元素都去执行一次回调函数
+      // item.mulActive.forEach(i => {
+      //   i = true
+      //   console.log('forEach没有返回值，你赋值个毛线')
+      //   console.log(i)
+      // })
+      // console.log(item.mulActive)
+    },
+    selectBig() {
+      this.numberData.forEach((v, i) => {
+        i < 5 ? v.checked = false : v.checked = true
+      })
+      this.changeEmit()
+    },
+    selectLittle() {
+      this.numberData.forEach((v, i) => {
+        i >= 5 ? v.checked = false : v.checked = true
+      })
+      this.changeEmit()
+    },
+    // 奇数
+    selectOdd() {
+      this.numberData.forEach((v, i) => {
+        i % 2 === 0 ? v.checked = false : v.checked = true
+      })
+      this.changeEmit()
+    },
+    // 偶数
+    selectEven() {
+      this.numberData.forEach((v, i) => {
+        i % 2 != 0 ? v.checked = false : v.checked = true
+      })
+      this.changeEmit()
+    },
+    selectClear() {
+      this.numberData.map(i => i.checked = false)
+      this.changeEmit()
+    },
   }
 }
 </script>
@@ -68,7 +117,7 @@ export default {
     float: left;
     span {
       font-size: px2rem(30px);
-      width: px2rem(100px);
+      width: 100%;
       display: block;
       text-align: center;
       line-height: 1.3em;
@@ -85,21 +134,50 @@ export default {
 
   .numberContent {
     float: right;
-    width: px2rem(600px);
+    width: 100%;
     .number {
       display: inline-block;
-      width: px2rem(70px);
-      height: px2rem(70px);
-      line-height: px2rem(70px);
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
       text-align: center;
       color: #dc3b40;
       background: #faf9f6;
       border-radius: 50%;
       border: 1px solid #bfbfbf;
-      font-size: px2rem(35px);
+      font-size: 18px;
       margin: px2rem(10px) px2rem(25px);
     }
   }
+  .buyNumberFilter {
+    padding: 0;
+    width: 82px;
+    margin-left: 4px;
+    a {
+      width: 21px;
+      height: 21px;
+      display: block;
+      float: left;
+      color: #666;
+      font-size: 12px;
+      border-radius: 2px;
+      margin: 2px 3px;
+      border: 1px solid #c1c6d2;
+      line-height: 18px;
+      box-shadow: inset 0 -1px 5px #fff;
+      text-align: center;
+      background: linear-gradient(180deg, #fff 0, #f1efef);
+      box-sizing: border-box;
+      &:hover {
+        background: linear-gradient(180deg, #d64b15 30%, #ea6a31);
+        border: 1px solid #d24c10;
+        color: #fff;
+        text-decoration: blink;
+        box-shadow: inherit;
+      }
+    }
+  }
+
   .number-active {
     background: #dc3b40 !important;
     color: #fff !important;

@@ -58,6 +58,7 @@
           </a>
         </div>
         <div>
+          <playSortMore @playBoardType="playBoardType" :tagToPlayMap="tagToPlayMap" v-show="true" @tagSelected="tagSelected" v-model="playBoardData"></playSortMore>
           <div>
             <ul class="betFilter">
               <li v-for="(item, index) in playItems" :class="{curr: currentPlayIndex === index}"
@@ -82,6 +83,8 @@
           </div>
           <!--十一选五组件-->
           <div class="sscCheckNumber">
+            {{selectedInfo}}
+            <playBoard ref="playBoard" @playBoardType="playBoardType" :playBoardData="playBoardData" v-model="selectedNumberData" @change="selectedNumberDataMethod"></playBoard>
             <ul>
               <li>
                 <div class="clearf selectSYX5" v-for="(item, index1) in checkNumberItems" :key="item.title">
@@ -233,12 +236,34 @@
 </template>
 <script>
   import BatItem from './batItem'
-  import { tagToPlayMapSYX5Data } from '../components/tagToPlayMapSYX5'
+  import { tagToPlayMap } from '../components/tagToPlayMap'
   import playMethodsSyx5 from '../../../api/playMethodsSyx5'
+  import playSortMore from '../components/playSortMore'
+  import playBoard from '../components/playBoard'
+  import playMethods from '../../../utils/playMethods'
 
   export default {
     data() {
       return {
+        tagToPlayMap: tagToPlayMap, //映射关系
+        playBoardData: [], //选中的面板数据
+        tagSelectedData: [], //选中的标签
+        selectedNumberData: [], //选中的号码
+        selectedInfo: {},
+        playBoardTypeValue: '',//页面是选择||输入
+        choseType: 1,
+        startTime: new Date().getTime() - 999,
+        endTime: new Date().getTime(),
+        currentTime: new Date().getTime(),
+        period: 1, //当前期号
+        checkedList: [],
+        betTopDetailShow: false,
+        betTopDetailSelected: 1,
+        arae: [],
+        areaShow: false,
+        araeSelected: '',
+
+
         money: 1930.5,
         qrxhData: {
           num: 0,
@@ -1826,6 +1851,25 @@
       // this.initNumData = this.checkNumberItems
     },
     methods: {
+      selectedNumberDataMethod(data) {
+        let type = this.tagSelectedData[0]
+        let details = this.tagSelectedData[2]
+        this.selectedInfo = Object.assign(playMethods(type, details, data),{area:this.araeSelected},{period: this.period})
+        console.log(this.selectedInfo)
+        // console.log(playMethods(type, details, data))
+//        selectedDataToStr(this.playBoardTypeValue, this.selectedInfo.selectedNum)
+      },
+      resetSelected() {
+        this.$refs.playBoard.resetSelected()
+      },
+      tagSelected(data) {
+        this.tagSelectedData = data
+      },
+      playBoardType(data) {
+        this.playBoardTypeValue = data
+      },
+
+
       toRight() {
         if (this.navNum > -560) {
           this.navNum -= 112
@@ -2093,9 +2137,21 @@
       }
     },
     components: {
-      BatItem
+      BatItem,
+      playSortMore,
+      playBoard
     },
     watch: {
+      'tagSelectedData': function (n) {
+        this.selectedInfo = {}
+        // console.log(n)
+      },
+      'selectedNumberData': {
+        handler: function (n) {
+
+        },
+        deep: true
+      },
       // 'currentPlayDetial': function(newVal, oldVal) {
       //
       // },
