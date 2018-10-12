@@ -67,48 +67,73 @@
   .betFilterAnd {
     background: #fff;
   }
-  .followPlaylist {
-    padding: px2rem(10px) px2rem(30px);
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    z-index: 1;
+  .betFilterAnd {
+    padding: 10px 15px;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+    li {
+      margin: 4px 0;
+    }
+    span {
+      vertical-align: top;
+      display: inline-block;
+      font-weight: 700;
+      color: #555;
+      width: 64px;
+      position: relative;
+      margin-left: 22px;
+      &:before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 54px;
+        background-color: #e7e7e8;
+        position: absolute;
+        top: -14px;
+        left: -16px;
+      }
+      &:after {
+        content: '';
+        display: block;
+        width: 11px;
+        height: 11px;
+        background-color: #fff;
+        border: 1px solid #e7e7e8;
+        border-radius: 50%;
+        position: absolute;
+        top: 7px;
+        left: -21px;
+      }
+    }
+    .numberContent {
+      display: inline-block;
+      max-width: 620px;
+      .number {
+        display: inline-block;
+        color: #555;
+        margin-right: 15px;
+        padding: 1px 5px;
+        border-radius: 3px;
+        user-select: none;
+        cursor: pointer;
+      }
+      .number:hover {
+        background-color: #ff9726;
+        color: #fff!important;
+      }
+    }
   }
 
   .title {
     float: left;
     span {
-      font-size: px2rem(30px);
-      width: px2rem(120px);
+      width: 70px;
       display: block;
-      text-align: center;
-      line-height: 1.3em;
       color: #666;
-      margin-top: px2rem(10px);
-      padding: .2em .5em;
-    }
-  }
-
-  .numberContent {
-    float: left;
-    width: px2rem(530px);
-    .number {
-      float: left;
-      display: inline-block;
-      height: px2rem(56px);
-      line-height: px2rem(56px);
-      text-align: center;
-      color: #666;
-      background: #faf9f6;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      font-size: px2rem(28px);
-      margin: px2rem(10px) px2rem(10px);
-      padding: 0 px2rem(20px);
     }
   }
   .active {
-    border: 1px solid #dc3b40 !important;
-    color: #dc3b40 !important;
+    background-color: #ff9726;
+    color: #fff!important;
   }
 </style>
