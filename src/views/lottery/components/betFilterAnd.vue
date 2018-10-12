@@ -89,7 +89,7 @@
         height: 54px;
         background-color: #e7e7e8;
         position: absolute;
-        top: -14px;
+        top: -8px;
         left: -16px;
       }
       &:after {

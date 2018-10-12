@@ -2,6 +2,7 @@
   <div class="selectNumber clearfix">
     <div class="title">
       <span>{{titleName}}</span>
+      <i></i>
     </div>
     <div class="numberContent">
       <div class="number" v-for="item in numberData" :class="{'number-active': item.checked == true}" @click="checkItem(item)">{{item.label}}</div>
@@ -114,45 +115,61 @@ export default {
   @include onebottompx('.selectNumber')
 
   .title {
-    float: left;
+    width: 65px;
+    display: inline-block;
+    margin-right: 25px;
     span {
-      font-size: px2rem(30px);
+      font-size: 14px;
+      text-align: center;
       width: 100%;
       display: block;
       text-align: center;
-      line-height: 1.3em;
-      color: #bbb39c;
-      background: #eeebda;
-      border: 1px solid #e3decf;
+      color: #fff;
+      background: #455467;
+      /*border: 1px solid #e3decf;*/
       border-radius: .3em;
       position: relative;
       z-index: 2;
-      margin-top: px2rem(10px);
+      margin-top: 10px;
       padding: .2em .5em;
+    }
+    i {
+      position: absolute;
+      display: block;
+      left: 65px;
+      top: 24px;
+      border-top: 5px solid transparent;
+      border-left: 5px solid #455467;
+      border-bottom: 5px solid transparent;
     }
   }
 
   .numberContent {
-    float: right;
-    width: 100%;
+    /*float: right;*/
+    /*width: 100%;*/
+    min-width: 500px;
+    display: inline-block;
     .number {
       display: inline-block;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
+      width: 38px;
+      height: 38px;
+      line-height: 38px;
       text-align: center;
-      color: #dc3b40;
+      color: #000;
       background: #faf9f6;
       border-radius: 50%;
       border: 1px solid #bfbfbf;
       font-size: 18px;
-      margin: px2rem(10px) px2rem(25px);
+      margin: 3px 5px;
+      cursor: pointer;
     }
   }
   .buyNumberFilter {
     padding: 0;
     width: 82px;
     margin-left: 4px;
+    display: inline-block;
+    vertical-align: top;
     a {
       width: 21px;
       height: 21px;
@@ -179,8 +196,8 @@ export default {
   }
 
   .number-active {
-    background: #dc3b40 !important;
+    background: #d24c10 !important;
     color: #fff !important;
-    border: 1px solid #dc3b40 !important;
+    border: 1px solid #d24c10 !important;
   }
 </style>
