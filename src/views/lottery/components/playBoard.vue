@@ -58,7 +58,6 @@
 					}
 				})
 				this.$emit('change', this.emitData)
-
 			}
 		},
 		destroyed() {

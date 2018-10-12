@@ -83,6 +83,7 @@
           </div>
           <!--十一选五组件-->
           <div class="sscCheckNumber">
+            {{selectedInfo}}
             <playBoard ref="playBoard" @playBoardType="playBoardType" :playBoardData="playBoardData" v-model="selectedNumberData" @change="selectedNumberDataMethod"></playBoard>
             <ul>
               <li>
@@ -239,6 +240,7 @@
   import playMethodsSyx5 from '../../../api/playMethodsSyx5'
   import playSortMore from '../components/playSortMore'
   import playBoard from '../components/playBoard'
+  import playMethods from '../../../utils/playMethods'
 
   export default {
     data() {
@@ -1849,6 +1851,25 @@
       // this.initNumData = this.checkNumberItems
     },
     methods: {
+      selectedNumberDataMethod(data) {
+        let type = this.tagSelectedData[0]
+        let details = this.tagSelectedData[2]
+        this.selectedInfo = Object.assign(playMethods(type, details, data),{area:this.araeSelected},{period: this.period})
+        console.log(this.selectedInfo)
+        // console.log(playMethods(type, details, data))
+//        selectedDataToStr(this.playBoardTypeValue, this.selectedInfo.selectedNum)
+      },
+      resetSelected() {
+        this.$refs.playBoard.resetSelected()
+      },
+      tagSelected(data) {
+        this.tagSelectedData = data
+      },
+      playBoardType(data) {
+        this.playBoardTypeValue = data
+      },
+
+
       toRight() {
         if (this.navNum > -560) {
           this.navNum -= 112
