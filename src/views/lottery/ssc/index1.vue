@@ -243,7 +243,25 @@
   export default {
     data() {
       return {
-        tagToPlayMap: tagToPlayMap,
+        tagToPlayMap: tagToPlayMap, //映射关系
+        playBoardData: [], //选中的面板数据
+        tagSelectedData: [], //选中的标签
+        selectedNumberData: [], //选中的号码
+        selectedInfo: {},
+        playBoardTypeValue: '',//页面是选择||输入
+        choseType: 1,
+        startTime: new Date().getTime() - 999,
+        endTime: new Date().getTime(),
+        currentTime: new Date().getTime(),
+        period: 1, //当前期号
+        checkedList: [],
+        betTopDetailShow: false,
+        betTopDetailSelected: 1,
+        arae: [],
+        areaShow: false,
+        araeSelected: '',
+
+
         money: 1930.5,
         qrxhData: {
           num: 0,
@@ -2103,6 +2121,16 @@
       playBoard
     },
     watch: {
+      'tagSelectedData': function (n) {
+        this.selectedInfo = {}
+        // console.log(n)
+      },
+      'selectedNumberData': {
+        handler: function (n) {
+
+        },
+        deep: true
+      },
       // 'currentPlayDetial': function(newVal, oldVal) {
       //
       // },
