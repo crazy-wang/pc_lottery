@@ -102,14 +102,14 @@
           </div>
           <div class="checkedList">
             <!--这块准备自写组件，不按他的来-->
-            <bat-item :batPropsData="batItemProps" @clearActiveClass="clearActiveClass"></bat-item>
+            <bat-item v-model="lastResult" :batPropsData="batItemProps" @clearActiveClass="clearActiveClass"></bat-item>
           </div>
           <div class="Bet">
             <p class="betTotal">
               方案注数
-              <em>{{betNum}}</em>
+              <em>{{this.lastResult.num}}</em>
               注，金额
-              <i class="money">{{betMoneyTotal}}</i>
+              <i class="money">{{this.lastResult.money}}</i>
               元
             </p>
             <a class="betBtn ClickShade">立即投注</a>
@@ -714,6 +714,10 @@
   export default {
     data() {
       return {
+        lastResult: {
+          num: 0,
+          money: 0
+        }, // 最后的投注数和金额
         filterPlayArr: [2, 3, 5, 6, 7], //用来决定什么时候显示确认选号模块，及区分点击添加数据还是确认选号后添加
         routerId: '',
         pageAllData: [
@@ -1481,7 +1485,18 @@
     },
     components: {
       BatItem
-    }
+    },
+    // watch: {
+    //   'batItemProps': function (nVal, oVal) {
+    //     console.log(nVal,'好')
+    //     // this.betNum = 0
+    //     // this.betMoneyTotal = 0
+    //     // for (let i = 0; i < nVal.length; i++) {
+    //     //   this.betNum += nVal[i].num
+    //     //   this.betMoneyTotal += nVal[i].num * nVal[i].bnum * 2
+    //     // }
+    //   }
+    // }
   }
 </script>
 

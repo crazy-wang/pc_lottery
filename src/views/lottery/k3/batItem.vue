@@ -49,6 +49,9 @@
   export default {
     data() {
       return {
+        // 暴露出去的总注数和总金额
+        num: 0,
+        money: 0,
         perPrice: '',
         // batPropsData: [
         //   {
@@ -102,5 +105,28 @@
         this.batPropsData.splice(index, 1)
       }
     },
+    watch: {
+      'batPropsData':{handler: function (nVal, oVal) {
+          console.log(nVal,'好')
+          // 每次先清空赋值
+          this.num = 0
+          this.money = 0
+          for (let i = 0; i < nVal.length; i++) {
+            this.num += nVal[i].number
+            this.money += +nVal[i].perPrice
+          }
+          let resultParmas = {
+            num: this.num,
+            money: this.money
+          }
+          this.$emit('input', resultParmas)
+          // this.betNum = 0
+          // this.betMoneyTotal = 0
+          // for (let i = 0; i < nVal.length; i++) {
+          //   this.betNum += nVal[i].num
+          //   this.betMoneyTotal += nVal[i].num * nVal[i].bnum * 2
+          // }
+        }, deep: true}
+    }
   }
 </script>
