@@ -113,7 +113,7 @@
           <div class="Panel">
             <p class="betTotal">
               您选择了
-              <em>{{qrxhData.num}}</em>
+              <em>{{this.selectedInfo.bittingNumber || 0}}</em>
               注,
               <em class="inputAdd clearf">
                 <i :class="{off: this.inputValue === 1}" @click="reduceInputValue">-</i>
@@ -121,18 +121,21 @@
                 <i style="float:right;" @click="addInputValue">+</i>
               </em>
               倍
-              <select name="" id="">
+              <select name="" id="" v-model="YJF">
                 <option value="1">元</option>
                 <option value="0.1">角</option>
                 <option value="0.01">分</option>
               </select>
               共
               <!--<i>{{qrxhData.total}}.00</i>-->
-              <i>{{qrxhDataTotal}}.00</i>
+              <!--<i>{{qrxhDataTotal}}.00</i>-->
+              <i>{{this.selectedInfo.bittingNumber * inputValue * 2 * YJF|| 0}}</i>
               元
             </p>
-            <a class="betBtn ClickShade" @click="confirm">确认选号</a>
+            <!--<a class="betBtn ClickShade" @click="confirm">确认选号</a>-->
+            <a class="betBtn ClickShade" @click="addDataToBox">确认选号</a>
           </div>
+          <numberBox></numberBox>
           <div class="checkedList">
             <!--这块准备自写组件，不按他的来-->
             <bat-item :propsData="propsData" @delPropsData="delPropsData"></bat-item>
@@ -240,6 +243,7 @@
   import playMethodsSyx5 from '../../../api/playMethodsSyx5'
   import playSortMore from '../components/playSortMore'
   import playBoard from '../components/playBoard'
+  import numberBox from '../components/numberBox'
   import playMethods from '../../../utils/playMethods'
 
   export default {
@@ -262,7 +266,7 @@
         arae: [],
         areaShow: false,
         araeSelected: '',
-
+        YJF: 1,
 
         money: 1930.5,
         qrxhData: {
@@ -1868,8 +1872,17 @@
       playBoardType(data) {
         this.playBoardTypeValue = data
       },
-
-
+      addDataToBox() {
+        if (this.finalData.bittingNumber != 0) {
+          this.$store.commit('setLotteryList', this.finalData)
+          this.resetSelected()
+//          this.finalData.bittingNumber = 0
+//          this.finalData.price = 0
+//           this.$emit('clearNow')
+//				  this.finalData.selectedNum = ''
+        }
+      },
+      //----------------------------------------------------------------------------------
       toRight() {
         if (this.navNum > -560) {
           this.navNum -= 112
@@ -2139,7 +2152,8 @@
     components: {
       BatItem,
       playSortMore,
-      playBoard
+      playBoard,
+      numberBox
     },
     watch: {
       'tagSelectedData': function (n) {
@@ -2179,6 +2193,21 @@
     computed: {
       qrxhDataTotal: function () {
         return this.qrxhData.num * 2 * this.inputValue
+      },
+      finalData() {
+        // console.log(this.selectedInfo)
+        return {
+          type: this.selectedInfo.type,
+          detial: this.selectedInfo.detial,
+          selectedNum: this.selectedInfo.selectedNum,
+          bittingNumber: this.selectedInfo.bittingNumber || 0,
+          price: this.selectedInfo.price || 0,
+          playBoardTypeValue: this.playBoardTypeValue,
+          betMul: this.betMul,
+          YJFmul: this.YJFmul,
+          area: this.selectedInfo.area,
+          period: this.selectedInfo.period
+        }
       }
     }
   }
