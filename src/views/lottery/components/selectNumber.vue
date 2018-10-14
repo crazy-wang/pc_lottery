@@ -162,6 +162,12 @@ export default {
       font-size: 18px;
       margin: 3px 5px;
       cursor: pointer;
+      background: linear-gradient(180deg,#fff 0,#f1efef);
+      box-shadow: 0 1px 3px #d4d4d4, inset 0 -1px 5px #fff;
+      &:hover {
+        background: linear-gradient(180deg,#d64b15 30%,#ea6a31);
+        color: #fff;
+      }
     }
   }
   .buyNumberFilter {
@@ -196,7 +202,7 @@ export default {
   }
 
   .number-active {
-    background: #d24c10 !important;
+    background: linear-gradient(180deg,#d64b15 30%,#ea6a31) !important;
     color: #fff !important;
     border: 1px solid #d24c10 !important;
   }
