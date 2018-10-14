@@ -243,7 +243,7 @@
   import playSortMore from '../components/playSortMore'
   import playBoard from '../components/playBoard'
   import numberBox from '../components/numberBox'
-  import playMethods from '../../../utils/playMethods'
+  import playMethods from '../../../utils/playMethodsPk10'
 
   export default {
     data() {
