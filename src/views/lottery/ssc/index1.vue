@@ -60,22 +60,22 @@
         <div>
           <playSortMore @playBoardType="playBoardType" :tagToPlayMap="tagToPlayMap" v-show="true" @tagSelected="tagSelected" v-model="playBoardData"></playSortMore>
           <div>
-            <ul class="betFilter">
-              <li v-for="(item, index) in playItems" :class="{curr: currentPlayIndex === index}"
-                  @click="filterPlay(index)">{{item}}
-              </li>
-            </ul>
-            <ul class="betFilterAnd">
-              <li>
-                <span>{{currentPlayDetial}}</span>
-                <div>
-                  <!--之前的-->
-                  <!--<a v-for="(item, index) in playDetials[currentPlayIndex]" @click="filterDetailPlay(item)">{{item}}</a>-->
-                  <!--现在的-->
-                  <a v-for="(item, index) in playDetials" @click="filterDetailPlay(item)" :class="{curr: currentPlayName === item}">{{item}}</a>
-                </div>
-              </li>
-            </ul>
+            <!--<ul class="betFilter">-->
+              <!--<li v-for="(item, index) in playItems" :class="{curr: currentPlayIndex === index}"-->
+                  <!--@click="filterPlay(index)">{{item}}-->
+              <!--</li>-->
+            <!--</ul>-->
+            <!--<ul class="betFilterAnd">-->
+              <!--<li>-->
+                <!--<span>{{currentPlayDetial}}</span>-->
+                <!--<div>-->
+                  <!--&lt;!&ndash;之前的&ndash;&gt;-->
+                  <!--&lt;!&ndash;<a v-for="(item, index) in playDetials[currentPlayIndex]" @click="filterDetailPlay(item)">{{item}}</a>&ndash;&gt;-->
+                  <!--&lt;!&ndash;现在的&ndash;&gt;-->
+                  <!--<a v-for="(item, index) in playDetials" @click="filterDetailPlay(item)" :class="{curr: currentPlayName === item}">{{item}}</a>-->
+                <!--</div>-->
+              <!--</li>-->
+            <!--</ul>-->
             <div class="betTip">
               <i class="iconfont icon-zhuyi"></i>
               {{betTips[this.currentPlayIndex]}}
@@ -83,31 +83,30 @@
           </div>
           <!--十一选五组件-->
           <div class="sscCheckNumber">
-            {{selectedInfo}}
             <playBoard ref="playBoard" @playBoardType="playBoardType" :playBoardData="playBoardData" v-model="selectedNumberData" @change="selectedNumberDataMethod"></playBoard>
-            <ul>
-              <li>
-                <div class="clearf selectSYX5" v-for="(item, index1) in checkNumberItems" :key="item.title">
-                  <span class="buyNumberTitle">
-                    {{item.title}}
-                    <i></i>
-                  </span>
-                  <div class="buyNumber clearf">
-                    <!--<a v-for="(item, index) in 11">{{item < 10 ? '0' + item : item}}</a>-->
-                    <a v-for="(list, index2) in item.numberArr" :key="index2" :class="{curr: item.mulActive[index2]}"
-                       @click="toggleSelected(item, index2)">{{list}}</a>
-                  </div>
-                  <div class="buyNumberFilter">
-                    <a href="javascript:;" @click="selectAll(item)">全</a>
-                    <a href="javascript:;" @click="selectBig(item)">大</a>
-                    <a href="javascript:;" @click="selectLittle(item)">小</a>
-                    <a href="javascript:;" @click="selectOdd(item)">奇</a>
-                    <a href="javascript:;" @click="selectEven(item)">偶</a>
-                    <a href="javascript:;" @click="selectClear(item)">清</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
+            <!--<ul>-->
+              <!--<li>-->
+                <!--<div class="clearf selectSYX5" v-for="(item, index1) in checkNumberItems" :key="item.title">-->
+                  <!--<span class="buyNumberTitle">-->
+                    <!--{{item.title}}-->
+                    <!--<i></i>-->
+                  <!--</span>-->
+                  <!--<div class="buyNumber clearf">-->
+                    <!--&lt;!&ndash;<a v-for="(item, index) in 11">{{item < 10 ? '0' + item : item}}</a>&ndash;&gt;-->
+                    <!--<a v-for="(list, index2) in item.numberArr" :key="index2" :class="{curr: item.mulActive[index2]}"-->
+                       <!--@click="toggleSelected(item, index2)">{{list}}</a>-->
+                  <!--</div>-->
+                  <!--<div class="buyNumberFilter">-->
+                    <!--<a href="javascript:;" @click="selectAll(item)">全</a>-->
+                    <!--<a href="javascript:;" @click="selectBig(item)">大</a>-->
+                    <!--<a href="javascript:;" @click="selectLittle(item)">小</a>-->
+                    <!--<a href="javascript:;" @click="selectOdd(item)">奇</a>-->
+                    <!--<a href="javascript:;" @click="selectEven(item)">偶</a>-->
+                    <!--<a href="javascript:;" @click="selectClear(item)">清</a>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</li>-->
+            <!--</ul>-->
           </div>
           <!--十一选五组件-->
           <div class="Panel">
@@ -136,20 +135,20 @@
             <a class="betBtn ClickShade" @click="addDataToBox">确认选号</a>
           </div>
           <numberBox></numberBox>
-          <div class="checkedList">
-            <!--这块准备自写组件，不按他的来-->
-            <bat-item :propsData="propsData" @delPropsData="delPropsData"></bat-item>
-          </div>
-          <div class="Bet">
-            <p class="betTotal">
-              方案注数
-              <em>{{betNum}}</em>
-              注，金额
-              <i class="money">{{betMoneyTotal}}</i>
-              元
-            </p>
-            <a class="betBtn ClickShade">马上投注</a>
-          </div>
+          <!--<div class="checkedList">-->
+            <!--&lt;!&ndash;这块准备自写组件，不按他的来&ndash;&gt;-->
+            <!--<bat-item :propsData="propsData" @delPropsData="delPropsData"></bat-item>-->
+          <!--</div>-->
+          <!--<div class="Bet">-->
+            <!--<p class="betTotal">-->
+              <!--方案注数-->
+              <!--<em>{{betNum}}</em>-->
+              <!--注，金额-->
+              <!--<i class="money">{{betMoneyTotal}}</i>-->
+              <!--元-->
+            <!--</p>-->
+            <!--<a class="betBtn ClickShade">马上投注</a>-->
+          <!--</div>-->
         </div>
       </div>
       <div class="betRight">
@@ -1865,6 +1864,7 @@
       },
       resetSelected() {
         this.$refs.playBoard.resetSelected()
+        this.inputValue = 1
       },
       tagSelected(data) {
         this.tagSelectedData = data
@@ -2203,8 +2203,8 @@
           bittingNumber: this.selectedInfo.bittingNumber || 0,
           price: this.selectedInfo.price || 0,
           playBoardTypeValue: this.playBoardTypeValue,
-          betMul: this.betMul,
-          YJFmul: this.YJFmul,
+          betMul: this.inputValue,
+          YJFmul: this.YJF,
           area: this.selectedInfo.area,
           period: this.selectedInfo.period
         }

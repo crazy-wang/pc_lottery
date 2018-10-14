@@ -2,25 +2,24 @@
   <div class="numberBox clearfix">
     <div class="content">
       <div class="cardContent">
-        <ul class="numBox">
-          <li v-for="(item, index) in lotteryList">
-            <div>{{selectedDataToStr(item.playBoardTypeValue, item.selectedNum)}}</div>
-            <span>{{`${item.type}${item.detial} ${item.bittingNumber}注 x ${2 / item.YJFmul}元 x ${item.betMul}倍 = ${item.price / item.YJFmul}元`}}</span>
-            <a @click="deleteItem(index)"></a>
-          </li>
-        </ul>
-        <div class="moreOption">
-          <div class="clear" @click="clearNum">
-            清空
-          </div>
-        </div>
+        <table>
+          <tr v-for="(item, index) in lotteryList">
+            <td>[{{item.type + ',' + item.detial}}]</td>
+            <td>{{selectedDataToStr(item.playBoardTypeValue, item.selectedNum)}}</td>
+            <td>{{item.bittingNumber}}注</td>
+            <td>{{item.betMul}}倍</td>
+            <td>{{item.YJFmul == 1 ? '元' : item.YJFmul == 0.1 ? '角' : '分'}}</td>
+            <td>可中金额{{(19.60 * item.YJFmul).toFixed(2)}}</td>
+            <td style="color: #ff9600;cursor: pointer;" @click="deleteItem ">删除</td>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="footerBar">
       <div class="left">
-        <span>方案{{allNumAndPrice.num}}注，{{allNumAndPrice.price}}元</span>
+        <span>方案{{allNumAndPrice.num}}注，金额{{allNumAndPrice.price}}元</span>
       </div>
-      <div class="right" @click="lotteryOrderAdd">立即投注</div>
+      <div class="right" @click="lotteryOrderAdd">马上投注</div>
     </div>
   </div>
 </template>
@@ -194,20 +193,29 @@
   @import "@/styles/index.scss";
 
   .numberBox {
-    position: relative;
-    background: #f9f8f0;
-    height: 100vh;
     width: 100%;
   }
 
   .content {
-    margin-top: px2rem(230px);
-    margin-bottom: px2rem(200px);
     .cardContent {
-      box-shadow: 0 0 px2rem(20px) #ccc;
-      margin: 0 px2rem(20px);
+      border: 1px solid #ddd;
+      margin: 15px;
+      padding: 10px;
+      height: 188px;
+      overflow-y: auto;
+      margin-top: 40px;
       background: #fff;
-      padding: px2rem(10px) px2rem(30px);
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+      tr {
+          background: #f4f4f4;
+          td {
+            padding: 5px 10px;
+          }
+        }
+      }
       .numBox {
         margin: px2rem(20px) 0;
         li {
@@ -217,7 +225,7 @@
           div {
             display: block;
             color: #dc3b40;
-            font-size: px2rem(30px);
+            font-size: 18px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -225,7 +233,7 @@
             height: 1.4em;
           }
           span {
-            font-size: px2rem(30px);
+            font-size: 18px;
             color: #666;
             line-height: 1.2em;
             width: 90%;
@@ -274,30 +282,25 @@
     border-color: #f4c829 !important;
   }
   .footerBar {
-    position: fixed;
-    z-index: 999999;
     bottom: 0;
-    height: px2rem(105px);
     width: 100%;
     .left {
-      width: 70%;
-      height: px2rem(105px);
-      line-height: px2rem(105px);
-      font-size:px2rem(30px);
-      padding: 0 px2rem(40px);
-      float: left;
-      background: #212121;
-      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px
     }
     .right {
-      float: left;
-      height: px2rem(105px);
-      line-height: px2rem(105px);
-      background: #dc3b40;
-      width: 30%;
-      color: #fff;
-      font-size:px2rem(40px);
+      display: block;
+      margin: 0 auto;
+      line-height: 44px;
+      font-size: 20px;
+      border-radius: 5px;
+      width: 150px;
       text-align: center;
+      background: #ea6a31;
+      color: #fff;
+      margin-bottom: 40px;
+      cursor: pointer;
     }
   }
 </style>
