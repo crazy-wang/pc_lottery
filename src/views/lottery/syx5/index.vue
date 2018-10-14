@@ -118,10 +118,10 @@
                 <i style="float:right;" @click="addInputValue">+</i>
               </em>
               倍
-              <select name="" id="">
-                <option value="1">元</option>
-                <option value="0.1">角</option>
-                <option value="0.01">分</option>
+              <select name="" id="" v-model="YJF">
+                <option value="元">元</option>
+                <option value="角">角</option>
+                <option value="分">分</option>
               </select>
               共
               <!--<i>{{qrxhData.total}}.00</i>-->
@@ -239,6 +239,7 @@
   export default {
     data() {
       return {
+        YJF: '元',
         money: 1930.5,
         qrxhData: {
           num: 0,
@@ -2077,7 +2078,8 @@
             num: this.selectedInfo.bittingNumber,
             bnum: this.inputValue,
             total: this.money* this.inputValue,
-            flag: '元'
+            // flag: '元'
+            flag: this.YJF
           }
           console.log(item,10)
           this.propsData.push(item)

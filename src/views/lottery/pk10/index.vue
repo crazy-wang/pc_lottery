@@ -243,7 +243,7 @@
   import playSortMore from '../components/playSortMore'
   import playBoard from '../components/playBoard'
   import numberBox from '../components/numberBox'
-  import playMethods from '../../../utils/playMethods'
+  import playMethods from '../../../utils/playMethodsPK10'
 
   export default {
     data() {
@@ -1896,7 +1896,7 @@
           return
         } else {
           this.routerId = index
-          this.$router.push({path: `/lottery/ssc/${index}`})
+          this.$router.push({path: `/lottery/pk10/${index}`})
           // this.currentPlayIndex = 0
         }
       },

@@ -51,7 +51,7 @@
 <style lang="scss" scoped>
   .demo1 {
     .row-item {
-      background-color: #ccc;
+      background-color: #f4f4f4;
       margin-bottom: 5px;
       .del {
         color: #f33;

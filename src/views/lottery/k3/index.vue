@@ -41,7 +41,9 @@
         <div>
           <div class="betNavCon">
             <ul class="betNav clearf" style="width: 1232px;" :style="{ transform: `translateX(${navNum}px)`}">
-              <li v-for="(item, index) in navItems" :class="{active: +routerId === index}" @click="togglePageId(index)">{{item}}</li>
+              <li v-for="(item, index) in navItems" :class="{active: +routerId === index}" @click="togglePageId(index)">
+                {{item}}
+              </li>
             </ul>
           </div>
           <a class="betNavtab left" @click="toLeft">
@@ -57,21 +59,27 @@
         </div>
         <div>
           <ul class="betFilter">
-            <li v-for="(item, index) in playItems" :class="{curr: currentPlayIndex === index}" @click="filterPlay(index)">{{item}}</li>
+            <li v-for="(item, index) in playItems" :class="{curr: currentPlayIndex === index}"
+                @click="filterPlay(index)">{{item}}
+            </li>
           </ul>
           <div class="betTip">
             <i class="iconfont icon-zhuyi"></i>
             {{betTips[this.currentPlayIndex]}}
           </div>
           <div class="checkNumber">
-            <div v-if="playCheckNumbers[0].odds">
+            <!--和值的-->
+            <!--<div v-if="playCheckNumbers[0].odds">-->
+            <div v-if="playCheckNumbers[0].play === '和值'">
               <ul>
-                <li v-for="(item, index) in playCheckNumbers" @click="addBatItemProps(item, item.odds)" :class="{active: item.selected}">
+                <li v-for="(item, index) in playCheckNumbers" @click="addBatItemProps(item, item.odds)"
+                    :class="{active: item.selected}">
                   <a href="javascript:;" class="ClickShade">{{item.num}}</a>
                   <span>赔{{item.odds}}</span>
                 </li>
               </ul>
             </div>
+            <!--专门二同号单选-->
             <div v-else-if="this.currentPlayIndex === 6">
               <ul>
                 <li v-for="(item, index) in playCheckNumbers.slice(0,6)">
@@ -84,9 +92,20 @@
                 </li>
               </ul>
             </div>
+            <!--特殊的需要确认选号的-->
+            <div v-else-if="filterPlayArr.indexOf(currentPlayIndex) !== -1">
+              <ul>
+                <li v-for="(item, index) in playCheckNumbers" @click="addBatItemProps2(item, item.odds)"
+                    :class="{active: item.selected}">
+                  <a href="javascript:;" class="ClickShade">{{item.num}}</a>
+                </li>
+              </ul>
+            </div>
+            <!--一般的-->
             <div v-else>
               <ul>
-                <li v-for="(item, index) in playCheckNumbers"  @click="addBatItemProps(item, item.odds)" :class="{active: item.selected}">
+                <li v-for="(item, index) in playCheckNumbers" @click="addBatItemProps(item, item.odds)"
+                    :class="{active: item.selected}">
                   <a href="javascript:;" class="ClickShade">{{item.num}}</a>
                 </li>
               </ul>
@@ -98,7 +117,7 @@
               <em>{{betNum}}</em>
               注
             </p>
-            <a class="betBtn ClickShade">确认选号</a>
+            <a style="cursor: pointer" class="betBtn ClickShade" @click="confimBet">确认选号</a>
           </div>
           <div class="checkedList">
             <!--这块准备自写组件，不按他的来-->
@@ -123,29 +142,30 @@
             <a href="javascript:;">玩法说明</a>
           </div>
           <div class="ResultsList">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="fn_getoPenGame" class="ty_table_gameBet curr">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="fn_getoPenGame"
+                   class="ty_table_gameBet curr">
               <tbody>
-                <tr>
-                  <th scope="col">期号</th>
-                  <th scope="col">开奖号</th>
-                  <th scope="col">和值</th>
-                  <th scope="col">形态</th>
-                </tr>
+              <tr>
+                <th scope="col">期号</th>
+                <th scope="col">开奖号</th>
+                <th scope="col">和值</th>
+                <th scope="col">形态</th>
+              </tr>
               </tbody>
               <tbody>
-                <tr v-for="(item, index) in todayResultList">
-                  <td class="c_green">
-                    <i>{{item.codeName}}</i>
-                  </td>
-                  <td>
-                    <i>{{item.winningNumbers}}</i>
-                  </td>
-                  <td>{{item.addValue}}</td>
-                  <td>
-                    <em :class="item.class1[0]">{{item.class1[1]}}</em>
-                    <em :class="item.class2[0]">{{item.class2[1]}}</em>
-                  </td>
-                </tr>
+              <tr v-for="(item, index) in todayResultList">
+                <td class="c_green">
+                  <i>{{item.codeName}}</i>
+                </td>
+                <td>
+                  <i>{{item.winningNumbers}}</i>
+                </td>
+                <td>{{item.addValue}}</td>
+                <td>
+                  <em :class="item.class1[0]">{{item.class1[1]}}</em>
+                  <em :class="item.class2[0]">{{item.class2[1]}}</em>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>
@@ -178,7 +198,8 @@
               <div class="winner-title">中奖信息实时更新</div>
               <div class="bd">
                 <div class="tempWrap" style="overflow: hidden; height: 510px;">
-                  <ul class="winnerList" style="cursor: pointer; transition: all 0.3s linear 0s; position: relative" :style="{top: topNumPx}">
+                  <ul class="winnerList" style="cursor: pointer; transition: all 0.3s linear 0s; position: relative"
+                      :style="{top: topNumPx}">
                     <li v-for="(item, idnex) in rankingLists">
                       <img :src="item.url" alt="">
                       <p class="color">
@@ -296,7 +317,7 @@
           img {
             margin: 0;
             margin-top: 9px;
-            &+img {
+            & + img {
               margin-left: 19px;
             }
           }
@@ -341,7 +362,7 @@
             margin: 0 34px;
             transition: .6s;
             overflow: hidden;
-            &>li {
+            & > li {
               display: inline-block;
               width: 112px;
               float: left;
@@ -352,7 +373,7 @@
               background-color: #fff;
               cursor: pointer;
               color: #333;
-              &+li {
+              & + li {
                 border-left: 1px solid #ddd;
               }
               &:last-child {
@@ -375,7 +396,7 @@
           right: 0;
           top: 0;
           width: 35px;
-          background: linear-gradient(#fff 2%,#ececec);
+          background: linear-gradient(#fff 2%, #ececec);
           border-left: 1px solid #ddd;
           cursor: auto;
           span {
@@ -554,7 +575,7 @@
           }
           .more {
             display: inline-block;
-            width: 156px!important;
+            width: 156px !important;
             margin: 0 8px;
             height: 26px;
             text-align: right;
@@ -637,7 +658,7 @@
         }
         .mybet {
           .more {
-            width: 100%!important;
+            width: 100% !important;
             margin: 0;
             border-bottom: 1px solid #ebebeb;
           }
@@ -711,6 +732,7 @@
 
 <script>
   import BatItem from './batItem'
+
   export default {
     data() {
       return {
@@ -757,8 +779,8 @@
         ],
         navNum: 0,
         period: '116389', //期号
-        navItems: ['江苏快3', '北京快3', '湖北快3','甘肃快3', '安徽快3','广西快3', '河北快3','上海快3', '大发快3', '贵州快3','吉林快3'], // 导航菜单
-        playItems: ['和值', '三同号通选', '三同号单选', '三不同号','三连号通选', '二同号复选','二同号单选', '二不同号'],
+        navItems: ['江苏快3', '北京快3', '湖北快3', '甘肃快3', '安徽快3', '广西快3', '河北快3', '上海快3', '大发快3', '贵州快3', '吉林快3'], // 导航菜单
+        playItems: ['和值', '三同号通选', '三同号单选', '三不同号', '三连号通选', '二同号复选', '二同号单选', '二不同号'],
         betTips: ['猜3个开奖号相加的和，3-10为小，11-18为大。赔率1.95-189.00倍。', '对所有相同的三个号码(111、222、333、444、555、666)进行投注，任意号码开出，即为中奖。赔率31.50倍。', '对相同的三个号码(111、222、333、444、555、666)中的任意一个或多个进行投注，所选号码开出，即为中奖。赔率189.00倍。', '从1-6中任选3个或多个号码,所选号码与开奖号码的3个号码相同,即为中奖。赔率31.50倍。', '对所有的3个相连号码(123、234、345、456)进行投注，任意号码开出，即为中奖。赔率7.87倍。', '从11-66中任选1个或多个号码，选号与奖号(包含11-66，不限顺序)相同，即为中奖（不含豹子）。赔率12.60倍。', '选择1对相同号码和1个不同号码投注，选号与奖号相同，即为中奖。赔率63.00倍。', '从1-6中任选2个或多个号码，所选号码与开奖号码任意2个号码相同，即为中奖。赔率6.30倍。'],
         currentPlayIndex: 0, //当前玩法
         playCheckNumbers: [], // 当前玩法对应的最终号码
@@ -1371,6 +1393,8 @@
             num: '547.12'
           },
         ],
+        resultProps: {},
+        confimProps: [], //用于确认选号增加的
         batItemProps: [], // 传给batItem子组件的数据
         // batItemProps: [
         //   {
@@ -1410,6 +1434,7 @@
     },
     mounted() {
       this.playCheckNumbers = this.playNumberData[0].playCheckNumber // 最后改成计算属性比价好
+      // console.log(this.playCheckNumbers,'好的话')
     },
     methods: {
       toRight() {
@@ -1441,6 +1466,13 @@
         } else {
           this.currentPlayIndex = index
           this.playCheckNumbers = this.playNumberData[index].playCheckNumber
+          // 清空
+          // 清除
+          this.betNum = 0
+          this.confimProps = []
+          this.playCheckNumbers.map(item => {
+            item.selected = false
+          })
         }
       },
       // 添加数据
@@ -1449,15 +1481,15 @@
         item.selected = !item.selected
         let subIndex = null
         for (let i = 0; i < this.batItemProps.length; i++) {
-          if (this.batItemProps[i].value === item.num) {
+          if (this.batItemProps[i].value[0] === item.num) {
             subIndex = i
           }
         }
-        if(subIndex === null) {
+        if (subIndex === null) {
           // 说明subIndex没经过for循环赋值，也就是原数组没有此项，可以添加
           let itemObj = {
             play: item.play,
-            value: item.num,
+            value: [item.num],
             number: 1,
             odds: odds,
             perPrice: '',
@@ -1468,6 +1500,62 @@
         } else {
           // 说明subIndex经过for循环赋值，也就是原数组有此项，应该删除
           this.batItemProps.splice(subIndex, 1)
+        }
+      },
+      // 需确认选号的添加数据
+      addBatItemProps2(item, odds) {
+        let valueArr = []
+        // console.log(item.selected,'没看到')
+        item.selected = !item.selected
+        if (item.selected === true) {
+          // 增加
+          this.confimProps.push(item)
+        } else {
+          for (let i = 0; i < this.confimProps.length; i++) {
+            if (this.confimProps[i].num === item.num) {
+              this.confimProps.splice(i, 1)
+            }
+          }
+        }
+        console.log(this.confimProps, '看看看看')
+        for (let j = 0; j < this.confimProps.length; j++) {
+          valueArr.push(this.confimProps[j].num)
+        }
+        // this.confimProps = this.confimProps.map(item => {
+        //   return {
+        //     play: item.play,
+        //     value: item.num,
+        //     number: 1, //?
+        //     odds: item.odds,
+        //     perPrice: '2',
+        //     bonus: 0.00, // ?
+        //     selected: item.selected
+        //   }
+        // })
+
+        this.resultProps = {
+          play: this.confimProps[0].play,
+          value: valueArr,
+          number: valueArr.length, //?
+          odds: this.confimProps[0].odds,
+          perPrice: '',
+          bonus: 0.00, // ?
+          selected: this.confimProps[0].selected
+        }
+        this.betNum = valueArr.length
+      },
+      // 确认选号
+      confimBet() {
+        if (this.betNum > 0) {
+          this.batItemProps.unshift(this.resultProps)
+          this.betNum = 0
+          // 清除
+          this.confimProps = []
+          this.playCheckNumbers.map(item => {
+            item.selected = false
+          })
+        } else {
+          alert('号码选择不完整，请重新选择')
         }
       },
       // 子传父，清除active类
