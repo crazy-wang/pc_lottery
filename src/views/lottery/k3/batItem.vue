@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <div class="bat-item" v-for="(item, index) in batPropsData">
-      <span>[{{item.play}}] {{item.value}}</span>
+      <span style="vertical-align: middle;max-width: 180px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;">[{{item.play}}] <span v-for="(item2, index2) in item.value" style="cursor: default; color: #000; width: 25px;">{{item2}}<i style="color: #000;" v-show="index2 !== item.value.length-1">,</i> </span></span>
       <span>总共{{item.number}}注</span>
       <span>每注 <input type="text" v-model="item.perPrice" @blur="computedBonus(item, index)">元</span>
       <span>可中金额 <i class="red">{{item.bonus.toFixed(2)}}</i>元</span>
@@ -106,14 +106,36 @@
       }
     },
     watch: {
+      // 'batPropsData':{handler: function (nVal, oVal) {
+      //     console.log(nVal,'好')
+      //     // 每次先清空赋值
+      //     this.num = 0
+      //     this.money = 0
+      //     for (let i = 0; i < nVal.length; i++) {
+      //       this.num += nVal[i].number
+      //       this.money += +nVal[i].perPrice
+      //     }
+      //     let resultParmas = {
+      //       num: this.num,
+      //       money: this.money
+      //     }
+      //     this.$emit('input', resultParmas)
+      //     // this.betNum = 0
+      //     // this.betMoneyTotal = 0
+      //     // for (let i = 0; i < nVal.length; i++) {
+      //     //   this.betNum += nVal[i].num
+      //     //   this.betMoneyTotal += nVal[i].num * nVal[i].bnum * 2
+      //     // }
+      //   }, deep: true}
+
       'batPropsData':{handler: function (nVal, oVal) {
           console.log(nVal,'好')
           // 每次先清空赋值
           this.num = 0
           this.money = 0
           for (let i = 0; i < nVal.length; i++) {
-            this.num += nVal[i].number
-            this.money += +nVal[i].perPrice
+            this.num += nVal[i].value.length
+            this.money += +nVal[i].perPrice*nVal[i].value.length
           }
           let resultParmas = {
             num: this.num,

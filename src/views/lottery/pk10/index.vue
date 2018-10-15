@@ -243,7 +243,7 @@
   import playSortMore from '../components/playSortMore'
   import playBoard from '../components/playBoard'
   import numberBox from '../components/numberBox'
-  import playMethods from '../../../utils/playMethodsPk10'
+  import playMethods from '../../../utils/playMethodsPK10'
 
   export default {
     data() {
@@ -1896,7 +1896,7 @@
           return
         } else {
           this.routerId = index
-          this.$router.push({path: `/lottery/ssc/${index}`})
+          this.$router.push({path: `/lottery/pk10/${index}`})
           // this.currentPlayIndex = 0
         }
       },
@@ -2245,7 +2245,7 @@
           position: relative;
           margin-left: -52px;
           top: -3px;
-          color: #218ddd;
+          color: #f22751;
           &:before {
             content: '';
             position: absolute;
@@ -2259,7 +2259,7 @@
             bottom: 3px;
           }
           &:after {
-            content: '\e61b';
+            content: '\e618';
             position: absolute;
             z-index: 2;
             left: 0;

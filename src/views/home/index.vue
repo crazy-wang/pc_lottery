@@ -138,7 +138,11 @@
       </div>
     </div>
     <div class="wrapR">
-      <div class="logined">
+      <div class="login-register" v-if="!showUserInof">
+        <a href="javascript:;" @click="jumpLogin">登 录</a>
+        <a href="javascript:;" @click="jumpRegister">用户注册</a>
+      </div>
+      <div class="logined" v-else>
         <h3>
           <i class="iconfont icon-ren"></i>
           <b>cds0715</b>
@@ -336,7 +340,7 @@
             margin-top: 32px;
             span {
               display: inline-block;
-              background: url(http://imagess-google.com/system/pc/k3/open_num.png);
+              background: url(http://images.app2jsknas.com/system/pc/k3/open_num.png);
               width: 60px;
               height: 60px;
               vertical-align: middle;
@@ -432,6 +436,25 @@
       width: 252px;
       height: 472px;
       margin-left: 13px;
+      .login-register {
+        a {
+          display: inline-block;
+          width: 120px;
+          text-align: center;
+          background-color: #fff9dd;
+          line-height: 42px;
+          height: 42px;
+          color: #e4393c;
+          font-size: 16px;
+          font-weight: 700;
+          border: 1px solid #ebd4b3;
+          box-sizing: border-box;
+          border-radius: 2px;
+          &+a {
+            margin-left: 5px;
+          }
+        }
+      }
       .logined {
         padding: 0 15px;
         height: 44px;
@@ -615,6 +638,7 @@
   export default {
     data() {
       return {
+        showUserInof: false,
         wrapLMenus: [
           {
             name: '江苏快3',
@@ -682,17 +706,17 @@
         autoTabName: ['江苏快3', '重庆时时彩', '上海11选5'],
         profitList: [
           {
-            profilePhoto: '//imagess-google.com/system/common/headimg/81e8ebc3eedde4e1.jpg',
+            profilePhoto: '//images.app2jsknas.com/system/common/headimg/3154a95056dea33d.jpg',
             nickname: '大发',
             num: 1550789
           },
           {
-            profilePhoto: '//imagess-google.com/system/common/headimg/81e8ebc3eedde4e1.jpg',
+            profilePhoto: '//images.app2jsknas.com/system/common/headimg/3154a95056dea33d.jpg',
             nickname: '大发',
             num: 1550789
           },
           {
-            profilePhoto: '//imagess-google.com/system/common/headimg/81e8ebc3eedde4e1.jpg',
+            profilePhoto: '//images.app2jsknas.com/system/common/headimg/3154a95056dea33d.jpg',
             nickname: '大发',
             num: 1550789
           }
@@ -701,32 +725,32 @@
         winnerInfoNum: 15, // 中奖信息top值
         winnerInfo: [
           {
-            url: '//imagess-google.com/system/common/headimg/5f6d71880b2ad1e0.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/1B6A214FF62BD91F.jpg',
             name: '大石头',
             money: '￥21.77'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/5f6d71880b2ad1e0.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/1B6A214FF62BD91F.jpg',
             name: '大石头',
             money: '￥21.77'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/5f6d71880b2ad1e0.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/1B6A214FF62BD91F.jpg',
             name: '大石头',
             money: '￥21.77'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/5f6d71880b2ad1e0.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/1B6A214FF62BD91F.jpg',
             name: '大石头',
             money: '￥21.77'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/5f6d71880b2ad1e0.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/1B6A214FF62BD91F.jpg',
             name: '大石头',
             money: '￥21.77'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/5f6d71880b2ad1e0.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/1B6A214FF62BD91F.jpg',
             name: '大石头',
             money: '￥21.77'
           },
@@ -783,6 +807,13 @@
       },
       jumpLottery(index) {
         this.$router.push({path: `/lottery/k3/${index}`})
+      },
+      // 跳登录和注册页
+      jumpLogin() {
+        this.$router.push('login')
+      },
+      jumpRegister() {
+        this.$router.push('register')
       }
     }
   }
