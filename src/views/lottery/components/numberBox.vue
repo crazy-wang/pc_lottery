@@ -92,6 +92,7 @@
       async lotteryOrderAdd() {
         let BettingData = []
         for (let i in this.lotteryList) {
+          console.log(99999)
           console.log(this.lotteryList[i])
           BettingData.push({
             lottery_code: this.lotteryList[i].area.id,
