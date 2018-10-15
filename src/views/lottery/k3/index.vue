@@ -229,7 +229,7 @@
     .betTitle {
       padding: 15px;
       .announced, .betLogo, .time {
-        background: url(http://imagess-google.com/system/pc/k3/betBg.png);
+        background: url(http://images.app2jsknas.com/system/pc/k3/betBg.png);
         float: left;
         height: 140px;
         border-radius: 6px;
@@ -311,7 +311,7 @@
         .announcedNo {
           display: inline-block;
           margin: 0 auto;
-          margin-top: 2px;
+          /*margin-top: 2px;*/
           position: relative;
           z-index: 4;
           img {
@@ -328,7 +328,7 @@
             text-align: center;
             margin: 19px 22px 0 0;
             float: left;
-            background: url(http://imagess-google.com/system/pc/k3/open_num.png) no-repeat center 0;
+            background: url(//images.app2jsknas.com/system/pc/k3/open_num.gif) no-repeat center 0;
             &:last-child {
               margin-right: 0;
             }
@@ -343,7 +343,7 @@
           background-position: 0 0;
         }
         .announcedNo6 {
-          background-position: 0 -122px;
+          // background-position: 0 -122px;
         }
       }
     }
@@ -479,7 +479,7 @@
         .checkNumber {
           margin: 24px 15px;
           padding: 25px 0;
-          background: url(http://imagess-google.com/system/pc/k3/betBg.png);
+          background: url(http://images.app2jsknas.com/system/pc/k3/betBg.png);
           border-radius: 6px;
           ul {
             text-align: center;
@@ -698,6 +698,7 @@
               padding: 0;
               vertical-align: inherit;
               li {
+                box-sizing: content-box;
                 padding: 5px 15px;
                 border-bottom: 1px dotted #ddd;
                 height: 40px;
@@ -1243,152 +1244,152 @@
         topNumPx: '0px', // 右侧中奖信息ul顶部距离
         rankingLists: [
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },
           {
-            url: '//imagess-google.com/system/common/headimg/A9734CC321C8B363.jpg',
+            url: '//images.app2jsknas.com/system/common/headimg/8f58610879f7e312.jpg',
             info: '哏哈 在UU快三',
             num: '547.12'
           },

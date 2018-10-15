@@ -11,6 +11,8 @@ import Syx5 from '@/views/lottery/syx5'
 import Ssc from '@/views/lottery/ssc/index1.vue'
 import Pk10 from '@/views/lottery/pk10'
 import Howtoplay from '@/views/howtoplay/index'
+import Login from '@/views/login'
+import Register from '@/views/register'
 
 Vue.use(Router)
 
@@ -109,6 +111,16 @@ export default new Router({
       path: '/howtoplay',
       name: 'howtoplay',
       component: Howtoplay
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     }
   ]
 })

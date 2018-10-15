@@ -2245,7 +2245,7 @@
           position: relative;
           margin-left: -52px;
           top: -3px;
-          color: #218ddd;
+          color: #f22751;
           &:before {
             content: '';
             position: absolute;
@@ -2259,7 +2259,7 @@
             bottom: 3px;
           }
           &:after {
-            content: '\e61b';
+            content: '\e618';
             position: absolute;
             z-index: 2;
             left: 0;
