@@ -59,7 +59,8 @@ export default new Router({
       children: [
         {
           path: 'k3/:id',
-          component: K3
+          component: K3,
+          meta: {needLogin: true}
         }
       ]
     },
@@ -73,7 +74,8 @@ export default new Router({
       children: [
         {
           path: 'syx5/:id',
-          component: Syx5
+          component: Syx5,
+          meta: {needLogin: true}
         }
       ]
     },
@@ -83,7 +85,8 @@ export default new Router({
       children: [
         {
           path: 'ssc/:id',
-          component: Ssc
+          component: Ssc,
+          meta: {needLogin: true}
         }
       ]
     },
@@ -93,7 +96,8 @@ export default new Router({
       children: [
         {
           path: 'pk10/:id',
-          component: Pk10
+          component: Pk10,
+          meta: {needLogin: true}
         }
       ]
     },

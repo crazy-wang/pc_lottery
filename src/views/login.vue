@@ -22,6 +22,7 @@
 
 <script>
   import {setToken, getToken} from '../utils/auth'
+  import { Base64 } from 'js-base64';
   export default {
     data() {
       return {
@@ -35,22 +36,28 @@
         //   name: 'admin',
         //   pwd: '123'
         // }
-        let params = {
-          name: this.userName,
-          pwd: this.pwd
-        }
-        let res = await this.axios.post('v1/login', params)
-        console.log(res)
-        if (res.data.code === 200) {
-          let resData = res.data.data
-          console.log('登录成功并存token')
-          setToken(resData.token)
-          this.$router.push({path: '/index'})
-          // alert(2)
-          // console.log(getToken())
+        let res = await this.axios.post('/v1/Login', {
+          username: this.userName,
+          password: this.pwd,
+          timestamp: parseInt(new Date().getTime() / 1000)
+        })
+        let str = `${res.data.data.client.id} ${res.data.data.access_token}`
+        setToken(Base64.encode(str))
+        if(res.data.message == 'success') {
+          this.$router.push('/home')
         } else {
-          this.$message.error('用户名或密码错误')
+
         }
+        // if (res.data.code === 200) {
+        //   let resData = res.data.data
+        //   console.log('登录成功并存token')
+        //   setToken(resData.token)
+        //   this.$router.push({path: '/index'})
+        //   // alert(2)
+        //   // console.log(getToken())
+        // } else {
+        //   this.$message.error('用户名或密码错误')
+        // }
 
       }
     }

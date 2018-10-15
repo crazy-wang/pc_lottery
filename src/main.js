@@ -4,12 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
+import axios from './utils/request'
+import './permission'
 import './styles/iconfont.css'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
-
+Vue.prototype.axios = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
