@@ -1,6 +1,7 @@
 <template>
   <div class="numberBox clearfix">
     <div class="content">
+      {{lotteryList}}
       <div class="cardContent">
         <table>
           <tr v-for="(item, index) in lotteryList">

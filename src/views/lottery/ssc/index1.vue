@@ -2,7 +2,7 @@
   <div class="w1000-center k3">
     <div class="betTitle clearf">
       <div class="betLogo">
-        <h2>{{pageAllData[routerId].name}}</h2>
+        <h2>{{araeSelected.title}}</h2>
         <i class="iconfont icon-xuan"></i>
       </div>
       <div class="time">
@@ -41,7 +41,7 @@
         <div>
           <div class="betNavCon">
             <ul class="betNav clearf" style="width: 1232px;" :style="{ transform: `translateX(${navNum}px)`}">
-              <li v-for="(item, index) in arae" :class="{active: +routerId === index}" @click="togglePageId(index)">
+              <li v-for="(item, index) in arae" :class="{active: araeSelected.id === item.id}" @click="togglePageId(item,index)">
                 {{item.title}}
               </li>
             </ul>
@@ -1867,6 +1867,11 @@
         // console.log(playMethods(type, details, data))
 //        selectedDataToStr(this.playBoardTypeValue, this.selectedInfo.selectedNum)
       },
+	    selectArea(item) {
+		    this.araeSelected = item
+		    this.areaShow = false
+		    // this.$router.push({params: { id: item.value}})
+	    },
       resetSelected() {
         this.$refs.playBoard.resetSelected()
         this.inputValue = 1
@@ -1902,12 +1907,14 @@
           console.log('最左边了')
         }
       },
-      togglePageId(index) {
+      togglePageId(item, index) {
+	    	console.log(item)
+	    	this.araeSelected = item
         if (index === +this.routerId) {
           return
         } else {
           this.routerId = index
-          this.$router.push({path: `/lottery/ssc/${index}`})
+//          this.$router.push({path: `/lottery/ssc/${index}`})
           // this.currentPlayIndex = 0
         }
       },
@@ -2161,6 +2168,17 @@
       numberBox
     },
     watch: {
+	    araeSelected(n) {
+	    	console.log(n)
+		    this.$router.push(`/lottery/ssc/${n.id}`)
+	    },
+	    arae() {
+		    for (let i in this.arae) {
+			    if (this.arae[i].id == this.$route.params.id) {
+				    this.araeSelected = this.arae[i]
+			    }
+		    }
+	    },
       'tagSelectedData': function (n) {
         this.selectedInfo = {}
         // console.log(n)
