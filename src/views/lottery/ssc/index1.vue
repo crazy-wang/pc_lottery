@@ -11,7 +11,10 @@
           <b>{{period}}</b>
           期投注截止还有：
         </div>
-        <em>00:07:57</em>
+        <em><count-down ref="countDown" style="height: 5vh;font-size: 18px;" v-on:start_callback=""
+                        v-on:end_callback="endTimeEvent" :startTime="startTime"
+                        :endTime="endTime" :tipText="''" :tipTextEnd="''" :endText="'已结束'"
+                        :dayTxt="''" :hourTxt="':'" :minutesTxt="':'" :secondsTxt="''"></count-down></em>
       </div>
       <div class="announced" id="Results">
         <div class="announcedTitle">
@@ -244,6 +247,7 @@
   import playBoard from '../components/playBoard'
   import numberBox from '../components/numberBox'
   import playMethods from '../../../utils/playMethods'
+  import countDown from '../../../components/countDown.vue'
 
   export default {
     data() {
@@ -1869,6 +1873,18 @@
 		    let res = await this.axios.get('/v1/Lottery/LotteryHall?type=ssc')
 		    this.arae = res.data.data
 	    },
+	    endTimeEvent() {
+		    this.$dialog.alert({
+			    title: '温馨提示',
+			    message: `<div style="text-align: center">
+            <div>${this.period}期已截止</div>
+            <div>当前期号<span style="color: red">${this.period + 1}</span></div>
+            <div>投注时请注意期号</div>
+          </div>`
+		    }).then(() => {
+			    this.getLotteryDetails()
+		    });
+	    },
       selectedNumberDataMethod(data) {
         let type = this.tagSelectedData[0]
         let details = this.tagSelectedData[2]
@@ -2175,7 +2191,8 @@
       BatItem,
       playSortMore,
       playBoard,
-      numberBox
+      numberBox,
+      countDown
     },
     watch: {
 	    araeSelected(n) {
