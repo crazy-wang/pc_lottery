@@ -41,8 +41,8 @@
         <div>
           <div class="betNavCon">
             <ul class="betNav clearf" style="width: 1232px;" :style="{ transform: `translateX(${navNum}px)`}">
-              <li v-for="(item, index) in navItems" :class="{active: +routerId === index}" @click="togglePageId(index)">
-                {{item}}
+              <li v-for="(item, index) in arae" :class="{active: +routerId === index}" @click="togglePageId(index)">
+                {{item.title}}
               </li>
             </ul>
           </div>
@@ -1830,6 +1830,7 @@
       this.routerId = this.$route.params.id
     },
     mounted() {
+    	this.getLotteryArea()
       this.playCheckNumbers = this.playNumberData[0].playCheckNumber // 最后改成计算属性比价好
       // 初始化数据
       this.currentPlayDetial = '三码'
@@ -1854,6 +1855,10 @@
       // this.initNumData = this.checkNumberItems
     },
     methods: {
+	    async getLotteryArea() {
+		    let res = await this.axios.get('/v1/Lottery/LotteryHall?type=ssc')
+		    this.arae = res.data.data
+	    },
       selectedNumberDataMethod(data) {
         let type = this.tagSelectedData[0]
         let details = this.tagSelectedData[2]
