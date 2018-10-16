@@ -1831,6 +1831,7 @@
     },
     mounted() {
     	this.getLotteryArea()
+    	this.getLotteryDetails()
       this.playCheckNumbers = this.playNumberData[0].playCheckNumber // 最后改成计算属性比价好
       // 初始化数据
       this.currentPlayDetial = '三码'
@@ -1855,6 +1856,15 @@
       // this.initNumData = this.checkNumberItems
     },
     methods: {
+	    async getLotteryDetails() {
+		    let res = await this.axios.get(`v1/Lottery/Details?id=${this.$route.params.id}`)
+		    let data = res.data.data
+		    this.startTime = parseInt(data.starttime)
+		    this.endTime = parseInt(data.stoptime)
+		    this.currentTime = parseInt(data.timestamp)
+		    this.period = data.period
+		    // this.$refs.countDown.gogogo()
+	    },
 	    async getLotteryArea() {
 		    let res = await this.axios.get('/v1/Lottery/LotteryHall?type=ssc')
 		    this.arae = res.data.data
