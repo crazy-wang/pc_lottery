@@ -15,6 +15,10 @@ Vue.use(Vant);
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+import Vant from 'vant';
+import 'vant/lib/vant-css/index.css';
+
+Vue.use(Vant);
 Vue.prototype.axios = axios
 Vue.config.productionTip = false
 

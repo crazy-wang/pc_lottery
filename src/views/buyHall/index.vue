@@ -51,22 +51,25 @@
     </div>
     <div class="lotteryContent slideTabBox">
       <ul class="lotteryNav hd clearf">
-        <li v-for="(item, index) in lotteryNavs" :class="{on: presentNavIndex === index}" @click="toggleNav(index)">
-          <a href="javascript:;">{{item}}</a>
+        <li v-for="(item, index) in lotteryTitle" :class="{on: item == activeFlag}" @click="toggleNav(item)">
+          <a href="javascript:;">{{nameMapToLotteryType(item)}}</a>
         </li>
       </ul>
       <div class="bd">
         <ul class="lotteryList clearf">
-          <li v-for="(item, index) in lotteryDetials" class="ClickShade">
+          <li v-for="(item, index) in lotteryList" class="ClickShade">
             <a href="javascript:;">
-              <i class="iconfont" :class="item.iconPic"></i>
+              <i v-if="item.type == 'syxw'" class="iconfont icon-xuan"></i>
+              <i v-if="item.type == 'pk10'" class="iconfont icon-pk"></i>
+              <i v-if="item.type == 'ssc'" class="iconfont icon-shishicai"></i>
+              <i v-if="item.type == 'k3'" class="iconfont icon-kuaisan"></i>
               <div class="lotteryDetail">
-                <h4>{{item.name}}</h4>
-                <em>{{item.time}}</em>
+                <h4>{{item.title}}</h4>
+                <em>{{item.per_explain}}</em>
               </div>
             </a>
             <div class="lotteryNow">
-              <a href="javascript:;" class="now MustLogin" @click="jumpRouter(item.url)">立即投注</a>
+              <a href="javascript:;" class="now MustLogin" @click="jumpRouter(`/lottery/${item.type}/${item.id}`)">立即投注</a>
               <a class="help">
                 <i class="iconfont icon-wenhao" @click="jumpPlayIntroduce(index)"></i>
                 <span class="helpTip">
@@ -374,6 +377,12 @@
   export default {
     data() {
       return {
+	      activeFlag: 'all',
+	      lotteryTitle: [],
+	      lotteryList: [],
+	      cache: [],
+	      selectedLottery: [],
+      	
         presentIndex: 0, //控制轮播图和焦点
         leftNum: 0, //轮播图偏移距离
         topNumPx: '0px', // 右侧风云榜ul顶部距离
@@ -753,6 +762,23 @@
       }
     },
     methods: {
+	    async getAllLottery() {
+		    let res = await this.axios.get('/v1/Lottery/LotteryHall')
+		    this.lotteryList = res.data.data
+		    this.cache = res.data.data
+		    this.lotteryTitle = ['hot', 'all', ...new Set(res.data.data.map(v => {
+			    return v.type
+		    }))]
+		     console.log(res.data.data)
+	    },
+	    nameMapToLotteryType(title) {
+	    	let map = {hot: '热门',all: '全部',  k3: '快3', ssc: '时时彩', syxw: '11选5', pk10: 'PK10'}
+	    	for(let i in map) {
+	    		if(i == title) {
+	    			return map[i]
+          }
+        }
+      },
       jumpRouter(url) {
         console.log(url)
         this.$router.push({path: `${url}`})
@@ -794,13 +820,27 @@
       startTimer() {
         this.lunboPic()
       },
-      toggleNav(index) {
-        if (index === this.presentNavIndex) {
-          return
-        } else {
-          this.presentNavIndex = index
-          this.lotteryDetials = this.lotteryDetialAll[index]
-        }
+      toggleNav(item) {
+	      this.activeFlag = item || 'all'
+	      this.lotteryList = this.cache
+	      if (item != 'all') {
+		      this.lotteryList = this.lotteryList.filter(v => {
+			      return v.type == item
+		      })
+		      // this.lotteryList.forEach(v => {
+		      // 	if (v.name == item.name) {
+		      // 		this.selectedLottery = item.data
+		      // 		this.activeFlag = item.name
+		      // 	}
+		      // })
+	      }
+	    	
+//        if (index === this.presentNavIndex) {
+//          return
+//        } else {
+//          this.presentNavIndex = index
+//          this.lotteryDetials = this.lotteryDetialAll[index]
+//        }
       },
       jumpPlayIntroduce() {
         const {href} = this.$router.resolve({
@@ -811,6 +851,7 @@
       }
     },
     mounted() {
+    	this.getAllLottery()
       this.lunboPic()
       this.lunboInfo()
     },

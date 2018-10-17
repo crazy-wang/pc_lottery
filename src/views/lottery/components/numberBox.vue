@@ -111,7 +111,7 @@
           data: {
             BettingData: BettingData
           },
-          source: 2
+          source: 1
         }
         let content = ''
         this.lotteryList.forEach(v => {

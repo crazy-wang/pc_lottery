@@ -2,7 +2,7 @@
   <div class="w1000-center k3">
     <div class="betTitle clearf">
       <div class="betLogo">
-        <h2>{{pageAllData[routerId].name}}</h2>
+        <!--<h2>{{pageAllData[routerId].name}}</h2>-->
         <i class="iconfont icon-xuan"></i>
       </div>
       <div class="time">

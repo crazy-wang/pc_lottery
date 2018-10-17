@@ -2,7 +2,7 @@
   <div class="w1000-center k3">
     <div class="betTitle clearf">
       <div class="betLogo">
-        <h2>{{pageAllData[routerId].name}}</h2>
+        <h2>{{araeSelected.title}}</h2>
         <i class="iconfont icon-xuan"></i>
       </div>
       <div class="time">
@@ -11,7 +11,10 @@
           <b>{{period}}</b>
           期投注截止还有：
         </div>
-        <em>00:07:57</em>
+        <em><count-down ref="countDown" style="height: 5vh;font-size: 18px;" v-on:start_callback=""
+                        v-on:end_callback="endTimeEvent" :startTime="startTime"
+                        :endTime="endTime" :tipText="''" :tipTextEnd="''" :endText="'已结束'"
+                        :dayTxt="''" :hourTxt="':'" :minutesTxt="':'" :secondsTxt="''"></count-down></em>
       </div>
       <div class="announced" id="Results">
         <div class="announcedTitle">
@@ -41,8 +44,8 @@
         <div>
           <div class="betNavCon">
             <ul class="betNav clearf" style="width: 1232px;" :style="{ transform: `translateX(${navNum}px)`}">
-              <li v-for="(item, index) in navItems" :class="{active: +routerId === index}" @click="togglePageId(index)">
-                {{item}}
+              <li v-for="(item, index) in arae" :class="{active: araeSelected.id === item.id}" @click="togglePageId(item,index)">
+                {{item.title}}
               </li>
             </ul>
           </div>
@@ -244,6 +247,7 @@
   import playBoard from '../components/playBoard'
   import numberBox from '../components/numberBox'
   import playMethods from '../../../utils/playMethods'
+  import countDown from '../../../components/countDown.vue'
 
   export default {
     data() {
@@ -1830,6 +1834,13 @@
       this.routerId = this.$route.params.id
     },
     mounted() {
+    	this.getLotteryArea()
+    	this.getLotteryDetails()
+	    for (let i in this.arae) {
+		    if (this.arae[i].id == this.$route.params.id) {
+			    this.araeSelected = this.arae[i]
+		    }
+	    }
       this.playCheckNumbers = this.playNumberData[0].playCheckNumber // 最后改成计算属性比价好
       // 初始化数据
       this.currentPlayDetial = '三码'
@@ -1854,6 +1865,31 @@
       // this.initNumData = this.checkNumberItems
     },
     methods: {
+	    async getLotteryDetails() {
+		    let res = await this.axios.get(`v1/Lottery/Details?id=${this.$route.params.id}`)
+		    let data = res.data.data
+		    this.startTime = parseInt(data.starttime)
+		    this.endTime = parseInt(data.stoptime)
+		    this.currentTime = parseInt(data.timestamp)
+		    this.period = data.period
+		    // this.$refs.countDown.gogogo()
+	    },
+	    async getLotteryArea() {
+		    let res = await this.axios.get('/v1/Lottery/LotteryHall?type=ssc')
+		    this.arae = res.data.data
+	    },
+	    endTimeEvent() {
+		    this.$dialog.alert({
+			    title: '温馨提示',
+			    message: `<div style="text-align: center">
+            <div>${this.period}期已截止</div>
+            <div>当前期号<span style="color: red">${this.period + 1}</span></div>
+            <div>投注时请注意期号</div>
+          </div>`
+		    }).then(() => {
+			    this.getLotteryDetails()
+		    });
+	    },
       selectedNumberDataMethod(data) {
         let type = this.tagSelectedData[0]
         let details = this.tagSelectedData[2]
@@ -1862,6 +1898,11 @@
         // console.log(playMethods(type, details, data))
 //        selectedDataToStr(this.playBoardTypeValue, this.selectedInfo.selectedNum)
       },
+	    selectArea(item) {
+		    this.araeSelected = item
+		    this.areaShow = false
+		    // this.$router.push({params: { id: item.value}})
+	    },
       resetSelected() {
         this.$refs.playBoard.resetSelected()
         this.inputValue = 1
@@ -1897,12 +1938,14 @@
           console.log('最左边了')
         }
       },
-      togglePageId(index) {
+      togglePageId(item, index) {
+	    	console.log(item)
+	    	this.araeSelected = item
         if (index === +this.routerId) {
           return
         } else {
           this.routerId = index
-          this.$router.push({path: `/lottery/ssc/${index}`})
+//          this.$router.push({path: `/lottery/ssc/${index}`})
           // this.currentPlayIndex = 0
         }
       },
@@ -2153,9 +2196,21 @@
       BatItem,
       playSortMore,
       playBoard,
-      numberBox
+      numberBox,
+      countDown
     },
     watch: {
+	    araeSelected(n) {
+	    	console.log(n)
+		    this.$router.push(`/lottery/ssc/${n.id}`)
+	    },
+	    arae() {
+		    for (let i in this.arae) {
+			    if (this.arae[i].id == this.$route.params.id) {
+				    this.araeSelected = this.arae[i]
+			    }
+		    }
+	    },
       'tagSelectedData': function (n) {
         this.selectedInfo = {}
         // console.log(n)

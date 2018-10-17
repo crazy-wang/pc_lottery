@@ -7,9 +7,9 @@ import Mobile from '@/views/mobile'
 import HelpGuide from '@/views/helpGuide'
 import UULive from '@/views/uuLive'
 import K3 from '@/views/lottery/k3'
-import Syx5 from '@/views/lottery/syx5'
+import Syx5 from '@/views/lottery/syx5/index1.vue'
 import Ssc from '@/views/lottery/ssc/index1.vue'
-import Pk10 from '@/views/lottery/pk10'
+import Pk10 from '@/views/lottery/pk10/index1.vue'
 import Howtoplay from '@/views/howtoplay/index'
 import Login from '@/views/login'
 import Register from '@/views/register'
@@ -74,7 +74,7 @@ export default new Router({
       component: Syx5,
       children: [
         {
-          path: 'syx5/:id',
+          path: 'syxw/:id',
           component: Syx5,
           meta: {needLogin: true}
         }
