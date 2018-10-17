@@ -13,6 +13,7 @@ import Pk10 from '@/views/lottery/pk10'
 import Howtoplay from '@/views/howtoplay/index'
 import Login from '@/views/login'
 import Register from '@/views/register'
+import PersonInfo from '@/views/personalCenter/personInfo'
 
 Vue.use(Router)
 
@@ -125,6 +126,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/personInfo',
+      name: 'PersonInfo',
+      component: PersonInfo
     }
   ]
 })
