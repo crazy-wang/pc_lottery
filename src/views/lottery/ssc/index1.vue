@@ -1836,6 +1836,11 @@
     mounted() {
     	this.getLotteryArea()
     	this.getLotteryDetails()
+	    for (let i in this.arae) {
+		    if (this.arae[i].id == this.$route.params.id) {
+			    this.araeSelected = this.arae[i]
+		    }
+	    }
       this.playCheckNumbers = this.playNumberData[0].playCheckNumber // 最后改成计算属性比价好
       // 初始化数据
       this.currentPlayDetial = '三码'
