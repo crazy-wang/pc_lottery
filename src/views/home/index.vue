@@ -4,10 +4,10 @@
       <div class="rowR myCol">
         <ul class="subnav">
           <li v-for="(item, index) in wrapLMenus">
-            <a class="MustLogin" @click="jumpLottery(index)">
+            <a class="MustLogin" @click="jumpLottery(item)">
               <i class="iconfont icon-kuaisan"></i>
-              <span class="sortName">{{item.name}}</span>
-              <span class="des">{{item.time}}</span>
+              <span class="sortName">{{item.title}}</span>
+              <span class="des">{{item.per_explain}}</span>
             </a>
           </li>
         </ul>
@@ -762,6 +762,7 @@
       }
     },
     mounted() {
+    	this.getHomeLottery('k3')
       this.lunboPic()
       this.lunboInfo()
     },
@@ -770,6 +771,10 @@
       clearTimeout(this.timer2)
     },
     methods: {
+    	async getHomeLottery(type) {
+    		let res = await this.axios.get(`/v1/Lottery/LotteryHall?type=${type}`)
+        this.wrapLMenus = res.data.data.slice(0,10)
+      },
       lunboPic() {
         clearTimeout(this.timer)
         this.timer = setTimeout(() => {
@@ -805,8 +810,8 @@
           this.autoTabIndex = index
         }
       },
-      jumpLottery(index) {
-        this.$router.push({path: `/lottery/k3/${index}`})
+      jumpLottery(item) {
+        this.$router.push({path: `/lottery/k3/${item.id}`})
       },
       // 跳登录和注册页
       jumpLogin() {
