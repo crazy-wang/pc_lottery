@@ -138,7 +138,7 @@
       </div>
     </div>
     <div class="wrapR">
-      <div class="login-register" v-if="!showUserInof">
+      <div class="login-register" v-if="!userInfo">
         <a href="javascript:;" @click="jumpLogin">登 录</a>
         <a href="javascript:;" @click="jumpRegister">用户注册</a>
       </div>
@@ -635,6 +635,7 @@
 </style>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
@@ -763,6 +764,7 @@
     },
     mounted() {
     	this.getHomeLottery('k3')
+    	this.getUserInfo()
       this.lunboPic()
       this.lunboInfo()
     },
@@ -775,6 +777,10 @@
     		let res = await this.axios.get(`/v1/Lottery/LotteryHall?type=${type}`)
         this.wrapLMenus = res.data.data.slice(0,10)
       },
+	    async getUserInfo() {
+		    let userInfo = await this.axios.get('/v1/User/Info')
+		    this.$store.commit('setUserInfo', userInfo.data.data)
+	    },
       lunboPic() {
         clearTimeout(this.timer)
         this.timer = setTimeout(() => {
@@ -820,6 +826,11 @@
       jumpRegister() {
         this.$router.push('register')
       }
+    },
+    computed: {
+    	...mapGetters([
+    		'userInfo'
+      ])
     }
   }
 </script>

@@ -1525,19 +1525,36 @@
 				}
 			},
 			async lotteryOrderAdd() {
+				if(this.lastResult.num == 0) {
+					this.$dialog.alert({
+						title: '提示',
+						message: '请至少选择一注投注号码'
+					})
+					return false
+				}
+				
 				let BettingData = []
 				for (let i in this.batItemProps) {
-					BettingData.push({
-						lottery_code: this.$route.params.id,
-						play_detail_code: "1-A1",
-						betting_number: this.batItemProps[i].value[0],
-						betting_count: this.batItemProps[i].number,
-						betting_money: this.batItemProps[i].perPrice,
-						betting_point: "7.50%",
-						betting_model: 1,
-						betting_issuseNo: this.period,
-						graduation_count: 1
-					})
+					if(this.batItemProps[i].perPrice == '') {
+						this.$dialog.alert({
+							title: '提示',
+							message: '您有号码未设置金额，请设置后投注'
+						})
+						BettingData = []
+						return false
+					} else {
+						BettingData.push({
+							lottery_code: this.$route.params.id,
+							play_detail_code: "1-A1",
+							betting_number: this.batItemProps[i].value[0],
+							betting_count: this.batItemProps[i].number,
+							betting_money: this.batItemProps[i].perPrice,
+							betting_point: "7.50%",
+							betting_model: 1,
+							betting_issuseNo: this.period,
+							graduation_count: 1
+						})
+					}
 				}
 				console.log(BettingData)
 				let params = {
