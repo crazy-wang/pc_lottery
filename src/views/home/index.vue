@@ -4,10 +4,10 @@
       <div class="rowR myCol">
         <ul class="subnav">
           <li v-for="(item, index) in wrapLMenus">
-            <a class="MustLogin" @click="jumpLottery(index)">
+            <a class="MustLogin" @click="jumpLottery(item)">
               <i class="iconfont icon-kuaisan"></i>
-              <span class="sortName">{{item.name}}</span>
-              <span class="des">{{item.time}}</span>
+              <span class="sortName">{{item.title}}</span>
+              <span class="des">{{item.per_explain}}</span>
             </a>
           </li>
         </ul>
@@ -138,7 +138,7 @@
       </div>
     </div>
     <div class="wrapR">
-      <div class="login-register" v-if="!showUserInof">
+      <div class="login-register" v-if="!userInfo">
         <a href="javascript:;" @click="jumpLogin">登 录</a>
         <a href="javascript:;" @click="jumpRegister">用户注册</a>
       </div>
@@ -635,6 +635,7 @@
 </style>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
@@ -762,6 +763,8 @@
       }
     },
     mounted() {
+    	this.getHomeLottery('k3')
+    	this.getUserInfo()
       this.lunboPic()
       this.lunboInfo()
     },
@@ -770,6 +773,14 @@
       clearTimeout(this.timer2)
     },
     methods: {
+    	async getHomeLottery(type) {
+    		let res = await this.axios.get(`/v1/Lottery/LotteryHall?type=${type}`)
+        this.wrapLMenus = res.data.data.slice(0,10)
+      },
+	    async getUserInfo() {
+		    let userInfo = await this.axios.get('/v1/User/Info')
+		    this.$store.commit('setUserInfo', userInfo.data.data)
+	    },
       lunboPic() {
         clearTimeout(this.timer)
         this.timer = setTimeout(() => {
@@ -805,8 +816,8 @@
           this.autoTabIndex = index
         }
       },
-      jumpLottery(index) {
-        this.$router.push({path: `/lottery/k3/${index}`})
+      jumpLottery(item) {
+        this.$router.push({path: `/lottery/k3/${item.id}`})
       },
       // 跳登录和注册页
       jumpLogin() {
@@ -815,6 +826,11 @@
       jumpRegister() {
         this.$router.push('register')
       }
+    },
+    computed: {
+    	...mapGetters([
+    		'userInfo'
+      ])
     }
   }
 </script>

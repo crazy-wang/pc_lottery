@@ -8,9 +8,9 @@
         <ul>
           <li>
             <span class="user-pic">
-              <img src="../../../static/user-pic.png" alt="">
+              <img :src="`http://${userInfo.avatar}`" alt="">
             </span>
-            <span class="user-id">cds0715</span>
+            <span class="user-id">{{userInfo.username || '未登录'}}</span>
             <span class="user-level">0</span>
           </li>
           <li  class="myAccount">
@@ -26,7 +26,7 @@
           </li>
           <li>
             <span>余额:</span>
-            <span style="border: 1px dotted #6b6b6b; padding: 0 3px;">已隐藏 显示</span>
+            <span style="border: 1px dotted #6b6b6b; padding: 0 3px;">{{userInfo.money}}</span>
           </li>
           <li>
             <span>充值</span>
@@ -35,7 +35,7 @@
             <span>提现</span>
           </li>
           <li>
-            <span>退出</span>
+            <span @click="logOut">退出</span>
           </li>
           <li>
             <span class="online-service">在线客服</span>
@@ -45,6 +45,38 @@
     </div>
   </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  import {removeToken, removeUserInfo} from '../../utils/auth'
+  
+  export default {
+  	data() {
+  		return {
+  			
+      }
+    },
+	  methods: {
+		  async logOut() {
+			  let res = await this.axios.get('/v1/LoginOut')
+			  this.$dialog.alert({
+				  message: res.data.message
+			  }).then(() => {
+				  removeToken()
+				  removeUserInfo()
+          this.$store.commit('removeUserInfo')
+//				  this.$router.push('/login')
+          window.location.reload()
+			  });
+		  },
+    },
+	  computed: {
+		  ...mapGetters([
+			  'userInfo'
+		  ])
+	  },
+  }
+</script>
 
 <style lang="scss" scoped>
   .top-info {
