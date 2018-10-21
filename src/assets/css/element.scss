@@ -1,0 +1,32 @@
+/*element样式改变*/
+.el-radio{
+  margin-left: 0;
+  margin-right: 5px;
+}
+.el-radio__input{
+  display: none;
+}
+.el-radio+.el-radio{
+  margin-left: 0px;
+}
+.item-radio .el-radio__label{
+  background: #fff;
+  border: 1px solid #cecece;
+  height: 30px;
+  line-height: 29px;
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #666;
+}
+.item-radio .is-checked{
+  box-sizing: border-box;
+  color: #666;
+  border-color: #4aa9db;
+  outline: 1px solid #4aa9db;
+}
+.el-input--suffix .el-input__inner{
+  width: 120px;
+}
+
+

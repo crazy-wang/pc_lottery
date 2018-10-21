@@ -131,6 +131,88 @@ export default new Router({
       path: '/personInfo',
       name: 'PersonInfo',
       component: PersonInfo
-    }
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: ()=> import('@/components/pages/nav/nav'),
+      children:[
+        {
+          path: '/securityCenter',
+          name: 'securityCenter',
+          component: ()=> import('@/components/pages/nav/account/securityCenter'),
+        },
+        {
+          path: '/manageBankcard',
+          name: 'manageBankcard',
+          component: ()=> import('@/components/pages/nav/account/manageBankcard'),
+        },
+        {
+          path: '/agentIntro',
+          name: 'agentIntro',
+          component: ()=> import('@/components/pages/nav/agent/agentIntro'),
+        },
+        {
+          path: '/agentReport',
+          name: 'agentReport',
+          component: ()=> import('@/components/pages/nav/agent/agentReport'),
+        },
+        {
+          path: '/lowerReport',
+          name: 'lowerReport',
+          component: ()=> import('@/components/pages/nav/agent/lowerReport'),
+        },
+        {
+          path: '/manageInvite',
+          name: 'manageInvite',
+          component: ()=> import('@/components/pages/nav/agent/manageInvite'),
+        },
+        {
+          path: '/agentMember',
+          name: 'agentMember',
+          component: ()=> import('@/components/pages/nav/agent/agentMember'),
+        },
+        {
+          path: '/agentBetRecord',
+          name: 'agentBetRecord',
+          component: ()=> import('@/components/pages/nav/agent/agentBetRecord'),
+        },
+        {
+          path: '/agentBillRecord',
+          name: 'agentBillRecord',
+          component: ()=> import('@/components/pages/nav/agent/agentBillRecord'),
+        },
+        {
+          path: '/betRecord',
+          name: 'betRecord',
+          component: ()=> import('@/components/pages/nav/betting/betRecord'),
+        },
+        {
+          path: '/seekOrder',
+          name: 'seekOrder',
+          component: ()=> import('@/components/pages/nav/betting/seekOrder'),
+        },
+        {
+          path: '/billRecord',
+          name: 'billRecord',
+          component: ()=> import('@/components/pages/nav/capital/billRecord'),
+        },
+        {
+          path: '/PLstatement',
+          name: 'PLstatement',
+          component: ()=> import('@/components/pages/nav/capital/PLstatement'),
+        },
+        {
+          path: '/letter',
+          name: 'letter',
+          component: ()=> import('@/components/pages/nav/info/letter'),
+        },
+        {
+          path: '/notice',
+          name: 'notice',
+          component: ()=> import('@/components/pages/nav/info/notice'),
+        },
+      ]
+    },
   ]
 })

@@ -221,7 +221,7 @@
 				</div>
 			</div>
 		</div>
-		{{batItemProps}}
+		<!--{{batItemProps}}-->
 	</div>
 </template>
 
@@ -738,8 +738,8 @@
 <script>
 	import BatItem from './batItem'
 	import countDown from '../../../components/countDown.vue'
-	
-	
+
+
 	export default {
 		data() {
 			return {
@@ -761,8 +761,8 @@
 				areaShow: false,
 				araeSelected: '',
 				YJF: 1,
-				
-				
+
+
 				lastResult: {
 					num: 0,
 					money: 0
@@ -1532,7 +1532,7 @@
 					})
 					return false
 				}
-				
+
 				let BettingData = []
 				for (let i in this.batItemProps) {
 					if(this.batItemProps[i].perPrice == '') {
@@ -1585,13 +1585,13 @@
 					}
 					this.$store.commit('resetLotteryList')
 				}).catch(() => {
-				
+
 				});
-				
+
 			},
-			
-			
-			
+
+
+
 			toRight() {
 				if (this.navNum > -560) {
 					this.navNum -= 112
@@ -1608,7 +1608,7 @@
 			},
 			togglePageId(item, index) {
 				this.araeSelected = item
-				
+
 				if (index === +this.routerId) {
 					return
 				} else {
@@ -1689,7 +1689,7 @@
 				//     selected: item.selected
 				//   }
 				// })
-				
+
 				this.resultProps = {
 					play: this.confimProps[0].play,
 					value: valueArr,

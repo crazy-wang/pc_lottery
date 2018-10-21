@@ -1,0 +1,30 @@
+.agent-record,.pl-statement{
+  ul{
+    padding: 20px 0;
+    margin: 15px 0;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+  }
+  li:nth-child(1){
+    border: none;
+  }
+  .agent-record-li{
+    box-sizing: border-box;
+    display: inline-block;
+    border-left: 1px dotted #d9d8d8;
+    width: 20%;
+  }
+  .money{
+    color: #4aa9db;
+    font-size: 18px;
+  }
+  .title{
+    color: #666;
+    font-size: 12px;
+    line-height: 24px;
+  }
+  .money,.title{
+    display: block;
+    text-align: center;
+  }
+}

@@ -19,7 +19,7 @@
               <i></i>
               <a href="">投注记录</a>
               <a href="">交易记录</a>
-              <a href="">个人信息</a>
+              <a href="javascript:;" @click="jumpInfoMain">个人信息</a>
               <a href="">安全中心</a>
               <a href="">代理中心</a>
             </div>
@@ -49,11 +49,11 @@
 <script>
   import { mapGetters } from 'vuex'
   import {removeToken, removeUserInfo} from '../../utils/auth'
-  
+
   export default {
   	data() {
   		return {
-  			
+
       }
     },
 	  methods: {
@@ -69,6 +69,9 @@
           window.location.reload()
 			  });
 		  },
+      jumpInfoMain() {
+		    this.$router.push('/main')
+      }
     },
 	  computed: {
 		  ...mapGetters([

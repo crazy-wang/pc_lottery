@@ -1,0 +1,70 @@
+ul,li{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+//温馨提示
+.user-tip{
+  margin-top: 15px;
+  border: 1px solid #f8e2b9;
+  background: #fffdeb;
+  color: #f46e00;
+  padding: 0 10px;
+  line-height: 24px;
+  span{
+    display: inline-block;
+    font-family: "微软雅黑";
+    background-color: #f46e00;
+    width: 15px;
+    height: 15px;
+    border-radius: 100px;
+    margin: 0 5px;
+    font-size: 12px;
+    vertical-align: middle;
+    color: #fffdeb;
+    line-height: 15px;
+    text-align: center;
+  }
+  p{
+    display: inline-block;
+    line-height: 24px;
+    font-size: 12px;
+  }
+}
+/*表单公共样式*/
+.label-msg{
+  font-size: 14px;
+  color: #000;
+}
+.inline-item{
+  display: inline-block;
+}
+.total-msg-info{
+  font-size: 12px;
+  color: #666;
+  line-height: 24px;
+  padding: 10px 2.5%;
+  .total-msg{
+    color: #e4393c;
+  }
+}
+.label-msg{
+  padding-left: 30px;
+}
+.betForm{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 20px;
+  line-height: 76px;
+  font-weight: 700;
+  background: #f8f8f8;
+  border-bottom: 1px solid #e3e3e3;
+}
+.float-l{
+  float: left;
+}
+.float-r{
+  float: right;
+}

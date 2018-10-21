@@ -145,7 +145,7 @@
       <div class="logined" v-else>
         <h3>
           <i class="iconfont icon-ren"></i>
-          <b>cds0715</b>
+          <b>{{userInfo.username}}</b>
         </h3>
         <a class="loginOut">
           <em>退出</em>
