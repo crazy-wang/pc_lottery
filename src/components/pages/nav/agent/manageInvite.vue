@@ -42,7 +42,7 @@
             class="table-title"
             style="width: 100%;box-sizing: border-box">
             <el-table-column
-              prop=""
+              prop="code"
               label="邀请码">
             </el-table-column>
             <el-table-column
@@ -54,24 +54,27 @@
               label="备注">
             </el-table-column>
             <el-table-column
-              prop=""
+              prop="createtime"
               label="生成时间">
             </el-table-column>
             <el-table-column
-              prop=""
               label="状态">
+              <template slot-scope="scope">
+                注册（{{ scope.row.count }}）
+              </template>
             </el-table-column>
             <el-table-column
               prop=""
-              label="操作">
+              label="操作"
+              width="200">
               <template slot-scope="scope">
-                <el-button>详情</el-button>|
-                <el-button>刪除</el-button>
+                <el-button size="mini">详情</el-button>|
+                <el-button size="mini">刪除</el-button>
               </template>
             </el-table-column>
           </el-table>
           <!--总条数-->
-          <div class="total-msg-info">共 <span class="total-msg">{{totalMsg}}</span> 条记录</div>
+          <div class="total-msg-info">共 <span class="total-msg">{{tableData.length || 0}}</span> 条记录</div>
           <!--提示信息-->
           <div class="user-tip">
             <span>!</span>
@@ -114,8 +117,8 @@ export default {
 		  })
     },
     async getAgentManagelCode() {
-	  	let res = await this.axios.post('/v1/Agent/ManagelCode')
-      console.log(res.data.data)
+	  	let res = await this.axios.get('/v1/Agent/ManagelCode')
+      this.tableData = res.data.data
     },
     async getMyAgent() {
 	  	let res = await this.axios.get('/v1/Agent/GetMy')
