@@ -118,19 +118,29 @@
           content += `<div>${v.type}${v.detial}:  ${selectedDataToStr(v.playBoardTypeValue, v.selectedNum)}</div>`
         })
         console.log(JSON.stringify(params))
-        this.$dialog.confirm({
+        this.$msgbox({
           title: '投注确认',
           message: '<div>' +
           '<div>' + this.lotteryList[0].area.title + this.lotteryList[0].period + '期</div>' +
           '<div>投注金额：<span style="color: red">' + this.allNumAndPrice.price + '元</span></div>' +
           '<div>投注内容：' + content + '</div>' +
-          '</div>'
+          '</div>',
+	        dangerouslyUseHTMLString: true
         }).then(async () => {
           let res = await this.axios.post('v1/Lottery/Order/Add', params)
           if (res.data.code == 200) {
-            this.$dialog.alert({
-              message: res.data.message
-            });
+            this.$alert(res.data.message);
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             // this.resetSelectData()
           }
         }).catch(() => {

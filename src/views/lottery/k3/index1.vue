@@ -1526,7 +1526,7 @@
 			},
 			async lotteryOrderAdd() {
 				if(this.lastResult.num == 0) {
-					this.$dialog.alert({
+					this.$msgbox({
 						title: '提示',
 						message: '请至少选择一注投注号码'
 					})
@@ -1536,7 +1536,7 @@
 				let BettingData = []
 				for (let i in this.batItemProps) {
 					if(this.batItemProps[i].perPrice == '') {
-						this.$dialog.alert({
+						this.$msgbox({
 							title: '提示',
 							message: '您有号码未设置金额，请设置后投注'
 						})
@@ -1568,19 +1568,18 @@
 					content += `<div>${v.value}</div> `
 				})
 				console.log(JSON.stringify(params))
-				this.$dialog.confirm({
+				this.$msgbox({
 					title: '投注确认',
 					message: '<div>' +
 					'<div>' + this.araeSelected.title + this.period + '期</div>' +
 					'<div>投注金额：<span style="color: red">' + this.lastResult.money + '元</span></div>' +
 					'<div>投注内容：' + content + '</div>' +
-					'</div>'
+					'</div>',
+					dangerouslyUseHTMLString: true
 				}).then(async () => {
 					let res = await this.axios.post('v1/Lottery/Order/Add', params)
 					if (res.data.code == 200) {
-						this.$dialog.alert({
-							message: res.data.message
-						});
+						this.$alert(res.data.message);
 						// this.resetSelectData()
 					}
 					this.$store.commit('resetLotteryList')

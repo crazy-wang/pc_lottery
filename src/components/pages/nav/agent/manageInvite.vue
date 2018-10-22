@@ -5,8 +5,8 @@
         <div class="manage-invite-lable">
           <span class="label-msg">开户类型：</span>
           <el-radio-group v-model="inviteStyle" class="item-radio">
-            <el-radio label="代理"></el-radio>
-            <el-radio label="玩家"></el-radio>
+            <el-radio label="1">代理</el-radio>
+            <el-radio label="2">玩家</el-radio>
           </el-radio-group>
           <p class="label-msg">返点设置：请先为下级设置返点。
             <router-link class="invite-link" to="">点击查看返点赔率表</router-link>
@@ -15,12 +15,13 @@
         <div class="manage-invite-main">
           <div v-for="(item,index) in itemList" :key="index">
             <span class="invite-label">{{item.lable}}</span>
-            <input type="text" class="manage-invite-input">
+            <span class="invite-label">{{item.value}}</span>
+            <input type="number" :max="item.max" class="manage-invite-input" v-model="item.number">
             <span class="">({{item.msg}})</span>
           </div>
         </div>
         <div class="submit-btn-wrap">
-          <el-button class="submitBtn">生成邀请码</el-button>
+          <el-button class="submitBtn" @click="submitCode">生成邀请码</el-button>
           <p class="tips">※ 温馨提示：
             <br> 1、不同的返点赔率不同，返点越高赔率越高。
             <br> 2、代理可获得的佣金等于代理自身返点与下级返点的差值，如代理自身返点6，下级返点4，代理可获得下级投注金额的2%，即下级下注100元，代理可获得2元。
@@ -32,8 +33,8 @@
         <div class="">
           <span class="label-msg">开户类型：</span>
           <el-radio-group v-model="inviteStyle2" class="item-radio">
-            <el-radio label="代理"></el-radio>
-            <el-radio label="玩家"></el-radio>
+            <el-radio label="1">代理</el-radio>
+            <el-radio label="2">玩家</el-radio>
           </el-radio-group>
           <!--邀請碼表單-->
           <el-table
@@ -87,46 +88,74 @@
 export default {
   data(){
     return{
-      inviteStyle:'',
-      inviteStyle2:'',
+      inviteStyle:'1',
+      inviteStyle2:'1',
       tableData:[],
       totalMsg:0,
-      itemList:[
-        {
-          lable:'时时彩',
-          msg:'自身返点8.0，可为下级设置返点范围0.0-8.0'
-        },
-        {
-          lable:'快3',
-          msg:'自身返点7.5，可为下级设置返点范围0.0-7.5'
-        },
-        {
-          lable:'11选5',
-          msg:'自身返点7.5，可为下级设置返点范围0.0-7.5'
-        },
-        {
-          lable:'福彩3D',
-          msg:'自身返点7.5，可为下级设置返点范围0.0-7.5'
-        },
-        {
-          lable:'排列3',
-          msg:'自身返点7.5，可为下级设置返点范围0.0-7.5'
-        },
-        {
-          lable:'北京快乐8',
-          msg:'自身返点7.5，可为下级设置返点范围0.0-7.5'
-        },
-        {
-          lable:'PK10',
-          msg:'自身返点8.0，可为下级设置返点范围0.0-8.0'
-        },
-        {
-          lable:'六合彩',
-          msg:'自身返点10.0，可为下级设置返点范围0.0-10.0'
-        },
-      ]
+      itemList:[],
     }
-  }
+  },
+  methods: {
+	  async submitCode() {
+	  	let code = {}
+	  	this.itemList.forEach((v, i) => {
+	  		code[v.value] = v.number
+      })
+	  	let params = {
+	  		type: this.inviteStyle,
+        ...code
+      }
+	  	let res = await this.axios.post('/v1/Agent/ManageInvite',params)
+      console.log(res)
+		  this.$alert(res.data.message, '提示', {
+			  confirmButtonText: '确定',
+			  type: 'success',
+			  center: true
+		  })
+    },
+    async getAgentManagelCode() {
+	  	let res = await this.axios.post('/v1/Agent/ManagelCode')
+      console.log(res.data.data)
+    },
+    async getMyAgent() {
+	  	let res = await this.axios.get('/v1/Agent/GetMy')
+      let data = res.data.data
+      this.itemList = [
+		      {
+			      lable:'时时彩',
+			      value: 'ssc',
+			      number: '',
+			      msg:`自身返点${data.ssc}，可为下级设置返点范围0.0-8.0`,
+            max: 8
+		      },
+		      {
+			      lable:'快3',
+			      value: 'k3',
+			      number: '',
+			      msg:`自身返点${data.k3}，可为下级设置返点范围0.0-7.5`,
+            max: 7.5
+		      },
+		      {
+			      lable:'11选5',
+			      value: 'syx5',
+			      number: '',
+			      msg:`自身返点${data.syx5}，可为下级设置返点范围0.0-7.5`,
+			      max: 7.5
+		      },
+		      {
+			      lable:'PK10',
+			      value: 'pk10',
+			      number: '',
+			      msg:`自身返点${data.pk10}，可为下级设置返点范围0.0-8.0`,
+			      max: 8
+		      }
+	      ]
+    }
+  },
+	mounted() {
+		this.getMyAgent()
+		this.getAgentManagelCode()
+	}
 }
 </script>
 
