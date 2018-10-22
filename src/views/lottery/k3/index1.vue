@@ -124,7 +124,6 @@
 					</div>
 					<div class="checkedList">
 						<!--这块准备自写组件，不按他的来-->
-						{{batItemProps}}
 						<bat-item v-model="lastResult" :batPropsData="batItemProps" @clearActiveClass="clearActiveClass"></bat-item>
 					</div>
 					<div class="Bet">
