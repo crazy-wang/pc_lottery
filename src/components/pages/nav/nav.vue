@@ -35,7 +35,7 @@
             navContent:[
               {
                 content:'个人信息',
-                link:'/'
+                link:'/person'
               } , {
                 content:'安全中心',
                 link:'/securityCenter'
