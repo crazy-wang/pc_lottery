@@ -138,6 +138,11 @@ export default new Router({
       component: ()=> import('@/components/pages/nav/nav'),
       children:[
         {
+          path: '/person',
+          name: 'person',
+          component: ()=> import('@/components/pages/nav/person/personInfo'),
+        },
+        {
           path: '/securityCenter',
           name: 'securityCenter',
           component: ()=> import('@/components/pages/nav/account/securityCenter'),
