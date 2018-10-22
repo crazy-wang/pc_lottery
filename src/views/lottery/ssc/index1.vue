@@ -1879,13 +1879,14 @@
 		    this.arae = res.data.data
 	    },
 	    endTimeEvent() {
-		    this.$dialog.alert({
+		    this.$msgbox({
 			    title: '温馨提示',
 			    message: `<div style="text-align: center">
             <div>${this.period}期已截止</div>
             <div>当前期号<span style="color: red">${this.period + 1}</span></div>
             <div>投注时请注意期号</div>
-          </div>`
+          </div>`,
+			    dangerouslyUseHTMLString: true
 		    }).then(() => {
 			    this.getLotteryDetails()
 		    });
