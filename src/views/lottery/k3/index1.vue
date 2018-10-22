@@ -124,6 +124,7 @@
 					</div>
 					<div class="checkedList">
 						<!--这块准备自写组件，不按他的来-->
+						{{batItemProps}}
 						<bat-item v-model="lastResult" :batPropsData="batItemProps" @clearActiveClass="clearActiveClass"></bat-item>
 					</div>
 					<div class="Bet">
@@ -1565,15 +1566,16 @@
 				}
 				let content = ''
 				this.batItemProps.forEach(v => {
-					content += `<div>${v.value}</div> `
+					content += `<div>${v.play} ${v.value}</div> `
 				})
 				console.log(JSON.stringify(params))
 				this.$msgbox({
 					title: '投注确认',
 					message: '<div>' +
-					'<div>' + this.araeSelected.title + this.period + '期</div>' +
-					'<div>投注金额：<span style="color: red">' + this.lastResult.money + '元</span></div>' +
-					'<div>投注内容：' + content + '</div>' +
+					'<div>彩种：' + this.araeSelected.title + '</div>' +
+					'<div>期号：'+ this.period + '期</div>' +
+					'<div>详情：' + content + '</div>' +
+					'<div>投注总金额：<span style="color: red">' + this.lastResult.money + '元</span></div>' +
 					'</div>',
 					dangerouslyUseHTMLString: true
 				}).then(async () => {

@@ -8,13 +8,13 @@
       </div>
       <div class="clearf tapli">
         <div class="selectHeadImg">
-          <img src="//images.app2jsknas.com/system/common/headimg/1362fa92410f5466.jpg" class="headImg">
+          <img :src="`http://${userInfo.avatar}`" class="headImg">
           <a href="javascript:;">修改头像</a>
         </div>
         <ul class="personInfo submitContent">
           <li>
             <span>账号：</span>
-            <ins>cds0715</ins>
+            <ins>{{userInfo.username}}</ins>
           </li>
           <li>
             <span>等级：</span>
@@ -84,13 +84,19 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     name: "person-info",
     data() {
       return {
 
       }
-    }
+    },
+	  computed: {
+		  ...mapGetters([
+			  'userInfo'
+		  ])
+	  }
   }
 </script>
 
