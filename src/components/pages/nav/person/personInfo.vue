@@ -26,7 +26,7 @@
           </li>
           <li>
             <span>昵称：</span>
-            <input regmsg="请使用五位以内的汉字" tag="昵称" placeholder="昵称为1-5位汉字，设置后不能修改" type="text" class="userInput">
+            <input regmsg="请使用五位以内的汉字" tag="昵称" placeholder="昵称为1-5位汉字，设置后不能修改" type="text" class="userInput" v-model="nickName">
           </li>
           <li>
             <span>手机：</span>
@@ -40,10 +40,10 @@
           </li>
           <li>
             <span>性别</span>
-            <el-radio-group v-model="radio2">
-              <el-radio :label="1">男</el-radio>
-              <el-radio :label="2">女</el-radio>
-              <el-radio :label="3">保密</el-radio>
+            <el-radio-group v-model="sex">
+              <el-radio :label="0">男</el-radio>
+              <el-radio :label="1">女</el-radio>
+              <!--<el-radio :label="3">保密</el-radio>-->
             </el-radio-group>
           </li>
           <li>
@@ -75,7 +75,7 @@
           </li>
           <li>
             <span></span>
-            <a href="javascript:;" class="submitBtn">保存</a>
+            <a href="javascript:;" class="submitBtn" @click="setUserInfo">保存</a>
           </li>
         </ul>
       </div>
@@ -89,14 +89,21 @@
     name: "person-info",
     data() {
       return {
-
+	      sex: 0,
+        nickName: ''
       }
     },
 	  computed: {
 		  ...mapGetters([
 			  'userInfo'
 		  ])
-	  }
+	  },
+    methods: {
+	    async setUserInfo() {
+		    let res = await this.axios.post('/v1/User/Edit', {nickname: this.nickName,sex: this.sex})
+        this.$alert(res.data.message)
+	    }
+    }
   }
 </script>
 
