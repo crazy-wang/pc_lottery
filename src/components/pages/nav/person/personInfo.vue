@@ -1,10 +1,10 @@
 <template>
   <div class="userRight person-info">
-    <div class="userTitle mgb10">个人信息</div>
+    <!--<div class="userTitle mgb10">个人信息</div>-->
     <div class="userMain mgb10">
       <div id="newTab" class="newTab">
         <a href="" class="curr">个人资料</a>
-        <a href="" class="curr">等级头衔</a>
+        <a href="" class="curr" style="color: #000;">等级头衔</a>
       </div>
       <div class="clearf tapli">
         <div class="selectHeadImg">
@@ -46,33 +46,33 @@
               <!--<el-radio :label="3">保密</el-radio>-->
             </el-radio-group>
           </li>
-          <li>
-            <span>生日：</span>
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-            <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </li>
+          <!--<li>-->
+            <!--<span>生日：</span>-->
+            <!--<el-select v-model="value" placeholder="请选择">-->
+              <!--<el-option-->
+                <!--v-for="item in options"-->
+                <!--:key="item.value"-->
+                <!--:label="item.label"-->
+                <!--:value="item.value">-->
+              <!--</el-option>-->
+            <!--</el-select>-->
+            <!--<el-select v-model="value" placeholder="请选择">-->
+              <!--<el-option-->
+                <!--v-for="item in options"-->
+                <!--:key="item.value"-->
+                <!--:label="item.label"-->
+                <!--:value="item.value">-->
+              <!--</el-option>-->
+            <!--</el-select>-->
+            <!--<el-select v-model="value" placeholder="请选择">-->
+              <!--<el-option-->
+                <!--v-for="item in options"-->
+                <!--:key="item.value"-->
+                <!--:label="item.label"-->
+                <!--:value="item.value">-->
+              <!--</el-option>-->
+            <!--</el-select>-->
+          <!--</li>-->
           <li>
             <span></span>
             <a href="javascript:;" class="submitBtn" @click="setUserInfo">保存</a>

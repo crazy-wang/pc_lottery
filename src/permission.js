@@ -6,6 +6,11 @@ router.beforeEach((to, from, next) => {
   if (to.fullPath == '/home') {
     store.commit('resetLotteryList')
   }
+  if (to.meta.hideHeader) {
+    store.commit('hideHeader',to.meta.hideHeader)
+  }else {
+    store.commit('hideHeader',false)
+  }
   if(getToken()) {
     next()
   } else {

@@ -67,7 +67,7 @@
     height: 67px;
     border-top: 3px solid #f29c9e;
     .h65 {
-      height: 65px;
+      height: 62px;
       border-top: 2px solid #dd3639;
       .logo {
         img {
@@ -75,7 +75,7 @@
         }
       }
       .nav {
-        height: 65px;
+        height: 62px;
         position: relative;
         li {
           position: relative;
@@ -83,14 +83,14 @@
           /*display: inline-block;*/
           float: left;
           text-align: center;
-          height: 65px;
+          height: 62px;
           width: 126px;
           border-left: 1px solid #e85759;
           border-right: 1px solid #de2e31;
         }
         a {
           display: inline-block;
-          height: 65px;
+          height: 62px;
           width: 126px;
           font-size: 14px;
           color: #fff;

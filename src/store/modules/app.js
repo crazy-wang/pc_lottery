@@ -2,7 +2,8 @@ const app = {
   state: {
 	  PlaySortMore: false,
 	  BetFilterDataFlag: true,
-	  headerTitle: ''
+	  headerTitle: '',
+    hideHeader: true,
   },
   mutations: {
 	  showPlaySortMore: (state, data) => {
@@ -13,7 +14,10 @@ const app = {
 	  },
 	  setHeaderTitle: (state, data) => {
 	  	state.headerTitle = data
-	  }
+	  },
+    hideHeader: (state, data) => {
+      state.hideHeader = data
+    }
   },
   actions: {
 

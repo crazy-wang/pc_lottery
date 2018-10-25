@@ -11,7 +11,7 @@
 					<b>{{period}}</b>
 					期投注截止还有：
 				</div>
-				<em><count-down ref="countDown" style="height: 5vh;font-size: 18px;" v-on:start_callback=""
+				<em><count-down ref="countDown" style="height: 5vh;font-size: 34px;" v-on:start_callback=""
 				                v-on:end_callback="endTimeEvent" :startTime="startTime"
 				                :endTime="endTime" :tipText="''" :tipTextEnd="''" :endText="'已结束'"
 				                :dayTxt="''" :hourTxt="':'" :minutesTxt="':'" :secondsTxt="''"></count-down></em>
@@ -227,6 +227,7 @@
 
 <style lang="scss" scoped>
 	.k3 {
+    margin-top: 20px;
 		background: #fff;
 		border: 1px solid #ccc;
 		position: relative;

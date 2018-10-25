@@ -15,7 +15,7 @@
         <div class="manage-invite-main">
           <div v-for="(item,index) in itemList" :key="index">
             <span class="invite-label">{{item.lable}}</span>
-            <span class="invite-label">{{item.value}}</span>
+            <!--<span class="invite-label">{{item.value}}</span>-->
             <input type="number" :max="item.max" class="manage-invite-input" v-model="item.number">
             <span class="">({{item.msg}})</span>
           </div>
@@ -45,14 +45,14 @@
               prop="code"
               label="邀请码">
             </el-table-column>
-            <el-table-column
-              prop=""
-              label="注册链接">
-            </el-table-column>
-            <el-table-column
-              prop=""
-              label="备注">
-            </el-table-column>
+            <!--<el-table-column-->
+              <!--prop=""-->
+              <!--label="注册链接">-->
+            <!--</el-table-column>-->
+            <!--<el-table-column-->
+              <!--prop=""-->
+              <!--label="备注">-->
+            <!--</el-table-column>-->
             <el-table-column
               prop="createtime"
               label="生成时间">

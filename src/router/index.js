@@ -61,7 +61,7 @@ export default new Router({
         {
           path: 'k3/:id',
           component: K3,
-          meta: {needLogin: true}
+          meta: {needLogin: true, hideHeader: true}
         }
       ]
     },
@@ -76,7 +76,7 @@ export default new Router({
         {
           path: 'syxw/:id',
           component: Syx5,
-          meta: {needLogin: true}
+          meta: {needLogin: true, hideHeader: true}
         }
       ]
     },
@@ -87,7 +87,7 @@ export default new Router({
         {
           path: 'ssc/:id',
           component: Ssc,
-          meta: {needLogin: true}
+          meta: {needLogin: true, hideHeader: true}
         }
       ]
     },
@@ -98,7 +98,7 @@ export default new Router({
         {
           path: 'pk10/:id',
           component: Pk10,
-          meta: {needLogin: true}
+          meta: {needLogin: true, hideHeader: true}
         }
       ]
     },

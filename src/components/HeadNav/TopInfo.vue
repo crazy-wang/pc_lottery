@@ -2,7 +2,8 @@
   <div class="top-info">
     <div class="w1000-center h30">
       <div class="fl">
-        <span>Hi，欢迎来到90彩票！</span>
+        <span v-if="this.hideHeader">Hi，欢迎来到90彩票！</span>
+        <span v-else="hideHeader" style="cursor: pointer; color: #f33;" @click="goHome">返回首页</span>
       </div>
       <div class="fr">
         <ul>
@@ -26,7 +27,11 @@
           </li>
           <li>
             <span>余额:</span>
-            <span style="border: 1px dotted #6b6b6b; padding: 0 3px;">{{userInfo.money}}</span>
+            <span style="border: 1px dotted #6b6b6b; padding: 0 3px;">
+              <span v-if="!flag">{{userInfo.money}}</span>
+              <span v-else>已隐藏</span>
+              <span @click="toggle">{{show}}</span>
+            </span>
           </li>
           <li>
             <span>充值</span>
@@ -53,7 +58,8 @@
   export default {
   	data() {
   		return {
-
+        show: '显示',
+        flag: true,
       }
     },
 	  methods: {
@@ -71,6 +77,17 @@
 		  },
       jumpInfoMain() {
 		    this.$router.push('/main')
+      },
+      toggle() {
+		    this.flag = !this.flag
+		    if (this.flag) {
+		      this.show = '显示'
+        } else {
+          this.show = '隐藏'
+        }
+      },
+      goHome() {
+		    this.$router.push('/home')
       }
     },
 	  computed: {
@@ -78,6 +95,7 @@
 			  'userInfo'
 		  ])
 	  },
+    props: ['hideHeader']
   }
 </script>
 

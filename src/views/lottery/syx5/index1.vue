@@ -11,7 +11,7 @@
 					<b>{{period}}</b>
 					期投注截止还有：
 				</div>
-				<em><count-down ref="countDown" style="height: 5vh;font-size: 18px;" v-on:start_callback=""
+				<em><count-down ref="countDown" style="height: 5vh;font-size: 34px;" v-on:start_callback=""
 				                v-on:end_callback="endTimeEvent" :startTime="startTime"
 				                :endTime="endTime" :tipText="''" :tipTextEnd="''" :endText="'已结束'"
 				                :dayTxt="''" :hourTxt="':'" :minutesTxt="':'" :secondsTxt="''"></count-down></em>
@@ -248,7 +248,7 @@
 	import numberBox from '../components/numberBox'
 	import playMethods from '../../../utils/playMethods'
 	import countDown from '../../../components/countDown.vue'
-	
+
 	export default {
 		data() {
 			return {
@@ -270,7 +270,7 @@
 				areaShow: false,
 				araeSelected: '',
 				YJF: 1,
-				
+
 				money: 1930.5,
 				qrxhData: {
 					num: 0,
@@ -1090,7 +1090,7 @@
 							// }
 						]
 					},
-					
+
 					{
 						tag: '不定位',
 						checked: false,
@@ -1532,7 +1532,7 @@
 							// }
 						]
 					},
-					
+
 					{
 						tag: '不定位',
 						checked: false,
@@ -1956,7 +1956,7 @@
 					// this.currentPlayDetial = this.playItems[index]
 					this.currentPlayIndex = index
 					// this.playCheckNumbers = this.playNumberData[index].playCheckNumber
-					
+
 					this.currentPlayDetial = this.playItems[index] // 当前玩法
 					console.log('当前玩法')
 					console.log(this.currentPlayDetial)
@@ -2059,15 +2059,15 @@
 				console.log(item) // 当前所在的数组
 				console.log(index2) // 当前的索引
 				// item.mulActive[index2] = !item.mulActive[index2] // vue不会响应此场景：利用索引直接设置一个项时
-				
+
 				//有两种方法解决此问题使其响应式：
 				// 1 Vue.set
 				this.$set(item.mulActive, index2, !item.mulActive[index2])
-				
+
 				// 2 Array.prototype.splice
 				// item.mulActive.splice(index2, 1, !item.mulActive[index2])
 				// console.log(this.checkNumberItems[0])
-				
+
 				//  对外处理数据
 				// console.log('对外处理数据')
 				// console.log(this.checkNumberItems)
@@ -2217,7 +2217,7 @@
 			},
 			'selectedNumberData': {
 				handler: function (n) {
-				
+
 				},
 				deep: true
 			},
@@ -2269,6 +2269,7 @@
 </script>
 <style lang="scss" scoped>
 	.k3 {
+    margin-top: 20px;
 		background: #fff;
 		border: 1px solid #ccc;
 		position: relative;
@@ -2409,7 +2410,7 @@
 						li {
 							display: table;
 							margin: 10px 0;
-							
+
 						}
 					}
 					.buyNumberTitle {
@@ -3241,7 +3242,7 @@
 	import numberBox from '../components/numberBox'
 	import playMethods from '../../../utils/playMethods'
 	import countDown from '../../../components/countDown.vue'
-	
+
 	export default {
 		data() {
 			return {
@@ -3263,7 +3264,7 @@
 				areaShow: false,
 				araeSelected: '',
 				YJF: 1,
-				
+
 				money: 1930.5,
 				qrxhData: {
 					num: 0,
@@ -4083,7 +4084,7 @@
 							// }
 						]
 					},
-					
+
 					{
 						tag: '不定位',
 						checked: false,
@@ -4525,7 +4526,7 @@
 							// }
 						]
 					},
-					
+
 					{
 						tag: '不定位',
 						checked: false,
@@ -4949,7 +4950,7 @@
 					// this.currentPlayDetial = this.playItems[index]
 					this.currentPlayIndex = index
 					// this.playCheckNumbers = this.playNumberData[index].playCheckNumber
-					
+
 					this.currentPlayDetial = this.playItems[index] // 当前玩法
 					console.log('当前玩法')
 					console.log(this.currentPlayDetial)
@@ -5052,15 +5053,15 @@
 				console.log(item) // 当前所在的数组
 				console.log(index2) // 当前的索引
 				// item.mulActive[index2] = !item.mulActive[index2] // vue不会响应此场景：利用索引直接设置一个项时
-				
+
 				//有两种方法解决此问题使其响应式：
 				// 1 Vue.set
 				this.$set(item.mulActive, index2, !item.mulActive[index2])
-				
+
 				// 2 Array.prototype.splice
 				// item.mulActive.splice(index2, 1, !item.mulActive[index2])
 				// console.log(this.checkNumberItems[0])
-				
+
 				//  对外处理数据
 				// console.log('对外处理数据')
 				// console.log(this.checkNumberItems)
@@ -5210,7 +5211,7 @@
 			},
 			'selectedNumberData': {
 				handler: function (n) {
-				
+
 				},
 				deep: true
 			},
@@ -5402,7 +5403,7 @@
 						li {
 							display: table;
 							margin: 10px 0;
-							
+
 						}
 					}
 					.buyNumberTitle {
@@ -6234,7 +6235,7 @@
 	import numberBox from '../components/numberBox'
 	import playMethods from '../../../utils/playMethodsSyx5'
 	import countDown from '../../../components/countDown.vue'
-	
+
 	export default {
 		data() {
 			return {
@@ -6256,7 +6257,7 @@
 				areaShow: false,
 				araeSelected: '',
 				YJF: 1,
-				
+
 				money: 1930.5,
 				qrxhData: {
 					num: 0,
@@ -7076,7 +7077,7 @@
 							// }
 						]
 					},
-					
+
 					{
 						tag: '不定位',
 						checked: false,
@@ -7518,7 +7519,7 @@
 							// }
 						]
 					},
-					
+
 					{
 						tag: '不定位',
 						checked: false,
@@ -7943,7 +7944,7 @@
 					// this.currentPlayDetial = this.playItems[index]
 					this.currentPlayIndex = index
 					// this.playCheckNumbers = this.playNumberData[index].playCheckNumber
-					
+
 					this.currentPlayDetial = this.playItems[index] // 当前玩法
 					console.log('当前玩法')
 					console.log(this.currentPlayDetial)
@@ -8046,15 +8047,15 @@
 				console.log(item) // 当前所在的数组
 				console.log(index2) // 当前的索引
 				// item.mulActive[index2] = !item.mulActive[index2] // vue不会响应此场景：利用索引直接设置一个项时
-				
+
 				//有两种方法解决此问题使其响应式：
 				// 1 Vue.set
 				this.$set(item.mulActive, index2, !item.mulActive[index2])
-				
+
 				// 2 Array.prototype.splice
 				// item.mulActive.splice(index2, 1, !item.mulActive[index2])
 				// console.log(this.checkNumberItems[0])
-				
+
 				//  对外处理数据
 				// console.log('对外处理数据')
 				// console.log(this.checkNumberItems)
@@ -8204,7 +8205,7 @@
 			},
 			'selectedNumberData': {
 				handler: function (n) {
-				
+
 				},
 				deep: true
 			},
@@ -8396,7 +8397,7 @@
 						li {
 							display: table;
 							margin: 10px 0;
-							
+
 						}
 					}
 					.buyNumberTitle {

@@ -1,6 +1,6 @@
 <template>
   <div class="userRight person-info">
-    <div class="userTitle mgb10">个人信息</div>
+    <!--<div class="userTitle mgb10">个人信息</div>-->
     <div class="userMain mgb10">
       <div id="newTab" class="newTab">
         <a href="" class="curr">个人资料</a>

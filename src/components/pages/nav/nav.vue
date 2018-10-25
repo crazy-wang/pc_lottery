@@ -13,7 +13,7 @@
         </ul>
       </div>
       <div class="nav-content">
-        <div class="user-title">{{userTitle}}</div>
+        <!--<div class="user-title">{{userTitle}}</div>-->
         <div class="user-main">
           <router-view/>
         </div>
@@ -110,7 +110,8 @@
       changeNav(key){
         this.userTitle = key;
       }
-    }
+    },
+
   }
 </script>
 

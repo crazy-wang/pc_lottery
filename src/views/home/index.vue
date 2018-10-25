@@ -267,12 +267,12 @@
         background: #eee;
       }
       .defaultImg {
-        background: url(http://images.app2jsknas.com/90cp/pc/banner/banner1.png?023d) 50% no-repeat !important;
-        background-color: #f3f3f3 !important;
+        /*background: url(http://images.app2jsknas.com/90cp/pc/banner/banner1.png?023d) 50% no-repeat !important;*/
+        /*background-color: #f3f3f3 !important;*/
       }
       .slideBox {
         position: relative;
-        top: 240px;
+        /*top: 240px;*/
         .hd {
           position: absolute;
           display: block;
